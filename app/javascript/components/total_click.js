@@ -15,8 +15,16 @@ const totalClick = () => {
       totalTd.innerText = total
       const dislikeStats = Math.round((dislike / total)*100)
       const likeStats = Math.round((like / total)*100)
-      dislikeStatTd.innerText = `${dislikeStats}%`
-      likeStatTd.innerText = `${likeStats}%`
+      if (dislikeStats) {
+        dislikeStatTd.innerText = `${dislikeStats}%`
+      } else {
+        dislikeStatTd.innerText = `0%`
+      }
+      if (likeStats) {
+        likeStatTd.innerText = `${likeStats}%`
+      } else {
+        likeStatTd.innerText = `0%`
+      }
       const totalContainer = document.querySelector('.total-container')
       totalContainer.style.display = 'flex';
     })
