@@ -7,7 +7,7 @@ const surveyClick = () => {
       let likeCount = parseInt(localStorage.getItem(like), 10)
       likeCount++
       localStorage.setItem(like, (likeCount).toString())
-      // displayThanksModal();
+      displayThanksModal();
     }
 
     likeFaces.forEach(likeFace => {
