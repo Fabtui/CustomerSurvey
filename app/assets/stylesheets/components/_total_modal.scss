@@ -1,16 +1,39 @@
 .total-container {
-  display: none;
-  transform: translateY(-20vh);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  transform: translateY(-75vh);
 }
 
 .total-container-content {
+  width: 80%;
   display: flex;
   justify-content: center;
+}
+
+.total-container-items {
+  padding: 29px 65px;
+  background-color: $light-gray;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 4px 4px 8px #0000001a;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   table {
     width: 60%;
   }
   table, th, td {
     border: 1px solid black;
     text-align: center;
+    padding: 8px;
+    background-color: white;
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  &:hover {
+    cursor: pointer;
   }
 }

@@ -1,3 +1,4 @@
+
 const closeButtonClick = () => {
   const closeButton = document.querySelector('.close-button');
   if (closeButton) {
