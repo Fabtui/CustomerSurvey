@@ -16,7 +16,7 @@ const surveyClick = () => {
 
     function displayThanksModal(){
       const thanksModal = document.querySelector('.thanks-coontainer')
-      const showModal = () => { thanksModal.style.display = 'block'; }
+      const showModal = () => { thanksModal.style.display = 'flex'; }
       const hideModal = () => setTimeout(thanksModal.style.display = 'none', 3000)
       showModal()
       setTimeout(()=>{
