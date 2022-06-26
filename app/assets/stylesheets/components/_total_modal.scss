@@ -1,0 +1,11 @@
+.total-container-content {
+  display: flex;
+  justify-content: center;
+  table {
+    width: 60%;
+  }
+  table, th, td {
+    border: 1px solid black;
+    text-align: center;
+  }
+}
