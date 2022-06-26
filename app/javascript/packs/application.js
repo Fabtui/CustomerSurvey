@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import { surveyClick } from '../components/survey_click'
+import { totalClick } from '../components/total_click'
 
 Rails.start()
 Turbolinks.start()
@@ -18,4 +19,5 @@ import "bootstrap"
 
 document.addEventListener('turbolinks:load', () => {
   surveyClick();
+  totalClick();
 })

@@ -1,7 +1,7 @@
 const surveyClick = () => {
-  localStorage.setItem('like', '0')
-  localStorage.setItem('dislike', '0')
-  const likeFaces = document.querySelectorAll('.face-button')
+  localStorage.setItem('like', '0');
+  localStorage.setItem('dislike', '0');
+  const likeFaces = document.querySelectorAll('.face-button');
   if (likeFaces) {
     const addToLocals = (like) => {
       let likeCount = parseInt(localStorage.getItem(like), 10)
