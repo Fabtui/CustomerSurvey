@@ -18,7 +18,7 @@ const totalClick = () => {
       dislikeStatTd.innerText = `${dislikeStats}%`
       likeStatTd.innerText = `${likeStats}%`
       const totalContainer = document.querySelector('.total-container')
-      totalContainer.style.display = 'block';
+      totalContainer.style.display = 'flex';
     })
   };
 }
