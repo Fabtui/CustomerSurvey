@@ -3,7 +3,7 @@ const totalClick = () => {
   if (totalButton) {
     totalButton.addEventListener('click', () => {
       const totalContainer = document.querySelector('.total-container')
-      totalContainer.style.display = 'block';
+      totalContainer.style.display = 'flex';
     })
   };
 }
