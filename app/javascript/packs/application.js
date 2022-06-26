@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import { surveyClick } from '../components/survey_click'
 import { totalClick } from '../components/total_click'
+import { closeButtonClick } from '../components/close_button_click'
 
 Rails.start()
 Turbolinks.start()
@@ -20,4 +21,5 @@ import "bootstrap"
 document.addEventListener('turbolinks:load', () => {
   surveyClick();
   totalClick();
+  closeButtonClick();
 })
