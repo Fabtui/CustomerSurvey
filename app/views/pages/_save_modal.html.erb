@@ -1,9 +1,15 @@
-<select id="save-day-select">
-  <% days.each do |day| %>
-  <option class="days-item" value="<%= day.id %>">
-    <%= day.date %> <%= day.name %>
-  </option>
-  <% end %>
-</select>
-<div id="save-submit-button" class="btn btn-primary">Sauvegarder</div>
-<%= link_to  %>
+<div class="save-container">
+  <div class="save-content">
+    <h5>Choisir une journée :</h5>
+    <select id="save-day-select" class="form-select" aria-label="Default select example">
+      <% days.each do |day| %>
+      <option class="days-item" value="<%= day.id %>">
+        <%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %>
+      </option>
+      <% end %>
+    </select>
+  <h5 class="mt-4">Ou :</h5>
+  <div class="btn btn-success">Créer une nouvelle journée</div>
+  <div id="save-submit-button" class="btn btn-primary mt-4">Sauvegarder</div>
+  </div>
+</div>

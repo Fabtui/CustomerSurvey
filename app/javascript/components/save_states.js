@@ -4,6 +4,12 @@ const saveStates = () => {
   const saveButton = document.querySelector('#save-submit-button');
   if (saveButton) {
     const daySelector = document.querySelector('#save-day-select');
+
+    const container = document.querySelector('.container')
+    const display = (response) => {
+      container.insertAdjacentHTML('beforeend', response['form'])
+    }
+
     saveButton.addEventListener('click', () => {
       const dayId = daySelector.value;
       // const params = {
@@ -18,8 +24,8 @@ const saveStates = () => {
       fetch( `/days/${dayId}/save?good=${localStorage.getItem('like')}&bad=${localStorage.getItem('dislike')}`, options )
           .then( response => response.json() )
           .then( response => {
-              console.log(response);
-          } );
+              display(response)
+          });
     })
   };
 }
