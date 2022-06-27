@@ -1,16 +1,17 @@
 <div class="container">
 <%= render 'shared/back_link' %>
-<ul>
   <% @days.each do |day| %>
-    <li>
-      <%= day.date %> - <%= day.name %>
-
-      <% if day.good %>
-      -
-      Good: <%= day.good %> -
-      Bad: <%= day.bad %> -
-      Total: <%= day.total %>
+  <div class="stats-item">
+    <div class="stat-header">
+      <h5><strong><%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %></strong></h5>
+      <%= link_to day_path(day.id), method: 'delete', data: { confirm: "Etes vous sûre de vouloir supprimer cette journée?" } do %>
+        <i class="fa fa-trash" aria-hidden="true"></i>
       <% end %>
-    </li>
+    </div>
+    <% if day.good %>
+      <%= render 'stats_table', day:day %>
+    <% else %>
+      <h6>Aucune donnée pour cette journée</h6>
+    <% end %>
+  </div>
   <% end %>
-</ul>
