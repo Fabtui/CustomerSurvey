@@ -24,9 +24,31 @@ class DaysController < ApplicationController
   end
 
   def update
+    @day = Day.new
+    puts "---------------------"
+    puts params
+    respond_to do |format|
+      if @day.save
+        format.html { redirect_to days_path }
+        format.json # Follow the classic Rails flow and look for a create.json view
+        raise
+      else
+        format.html { redirect_to :root, alert: "Une erreur c'est produite, la création n'a pu aboutir" }
+        format.json # Follow the classic Rails flow and look for a create.json view
+      end
+    end
   end
 
   def destroy
+  end
+
+  def save
+    @day = Day.find(params[:id])
+    @day.good = params[:good].to_i
+    @day.bad = params[:bad].to_i
+    @day.total = params[:bad].to_i + params[:good].to_i
+    @day.save
+    puts @day.bad
   end
 
   private
