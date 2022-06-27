@@ -12,6 +12,7 @@ import { totalClick } from '../components/total_click'
 import { closeButtonClick } from '../components/close_button_click'
 import { saveStates } from '../components/save_states'
 import { displayNewForm } from '../components/display_new_day_form'
+import { newDay } from '../components/new_day'
 
 Rails.start()
 Turbolinks.start()
@@ -26,4 +27,5 @@ document.addEventListener('turbolinks:load', () => {
   closeButtonClick();
   saveStates();
   displayNewForm();
+  newDay();
 })

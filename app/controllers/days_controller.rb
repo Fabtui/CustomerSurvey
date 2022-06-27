@@ -13,10 +13,14 @@ class DaysController < ApplicationController
 
   def create
     @day = Day.new(day_params)
-    if @day.save
-      redirect_to days_path
-    else
-      redirect_to :root, alert: "Une erreur c'est produite, la création n'a pu aboutir"
+    respond_to do |format|
+      if @day.save
+        format.html { redirect_to :root }
+        format.json # Follow the classic Rails flow and look for a create.json view
+      else
+        format.html { redirect_to :root }
+        format.json # Follow the classic Rails flow and look for a create.json view
+      end
     end
   end
 
@@ -24,19 +28,19 @@ class DaysController < ApplicationController
   end
 
   def update
-    @day = Day.new
-    puts "---------------------"
-    puts params
-    respond_to do |format|
-      if @day.save
-        format.html { redirect_to days_path }
-        format.json # Follow the classic Rails flow and look for a create.json view
-        raise
-      else
-        format.html { redirect_to :root, alert: "Une erreur c'est produite, la création n'a pu aboutir" }
-        format.json # Follow the classic Rails flow and look for a create.json view
-      end
-    end
+    # @day = Day.new
+    # puts "---------------------"
+    # puts params
+    # respond_to do |format|
+    #   if @day.save
+    #     format.html { redirect_to days_path }
+    #     format.json # Follow the classic Rails flow and look for a create.json view
+    #     raise
+    #   else
+    #     format.html { redirect_to :root, alert: "Une erreur c'est produite, la création n'a pu aboutir" }
+    #     format.json # Follow the classic Rails flow and look for a create.json view
+    #   end
+    # end
   end
 
   def destroy

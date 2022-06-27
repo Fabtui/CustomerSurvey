@@ -2,7 +2,7 @@ const displayNewForm = () => {
   const newDayButton = document.querySelector('#new-day-button');
 
   const toggleHidden = () => {
-    const saveModal = document.querySelector('#save-modal');
+    const saveModal = document.querySelector('#new-modal');
     const saveButton = document.querySelector('#save-submit-button');
     saveModal.classList.toggle('hidden');
     saveButton.classList.toggle('hidden');
