@@ -1,6 +1,7 @@
-<div class="save-container">
+<div class="save-container hidden">
   <div class="save-content">
-    <h5>Choisir une journée :</h5>
+  <i class='fa fa-warning'> Veuillez être connecté à internet pour pouvoir sauvegarder</i>
+    <h5 class='mt-4'>Choisir une journée :</h5>
     <select id="save-day-select" class="form-select" aria-label="Default select example">
       <% days.each do |day| %>
       <option class="days-item" value="<%= day.id %>">
