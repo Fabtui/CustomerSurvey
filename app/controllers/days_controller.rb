@@ -48,7 +48,6 @@ class DaysController < ApplicationController
     @day.bad = params[:bad].to_i
     @day.total = params[:bad].to_i + params[:good].to_i
     @day.save
-    puts @day.bad
   end
 
   private
