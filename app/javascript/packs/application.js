@@ -10,6 +10,7 @@ import "channels"
 import { surveyClick } from '../components/survey_click'
 import { totalClick } from '../components/total_click'
 import { closeButtonClick } from '../components/close_button_click'
+import { saveStates } from '../components/save_states'
 
 Rails.start()
 Turbolinks.start()
@@ -22,4 +23,5 @@ document.addEventListener('turbolinks:load', () => {
   surveyClick();
   totalClick();
   closeButtonClick();
+  saveStates();
 })

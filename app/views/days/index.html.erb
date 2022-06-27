@@ -1,8 +1,16 @@
 <div class="container">
+<%= render 'shared/back_link' %>
+
 <ul>
   <% @days.each do |day| %>
-    <li>
-      <%= day.name %>
+    <like>
+      <%= day.date %> - <%= day.name %>
+
+      <% if day.good %>
+        Good: <%= day.good %>
+        Bad: <%= day.bad %>
+        Total: <%= day.total %>
+      <% end %>
     </li>
   <% end %>
 </ul>

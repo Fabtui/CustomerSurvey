@@ -1,0 +1,9 @@
+<select id="save-day-select">
+  <% days.each do |day| %>
+  <option class="days-item" value="<%= day.id %>">
+    <%= day.date %> <%= day.name %>
+  </option>
+  <% end %>
+</select>
+<div id="save-submit-button" class="btn btn-primary">Sauvegarder</div>
+<%= link_to  %>
