@@ -1,6 +1,6 @@
 class DaysController < ApplicationController
   def index
-    @days = Day.all
+    @days = Day.all.order(date: :desc)
     @day = Day.new
   end
 
@@ -44,6 +44,9 @@ class DaysController < ApplicationController
   end
 
   def destroy
+    @day = Day.find(params[:id])
+    @day.destroy
+    redirect_to days_path
   end
 
   def save

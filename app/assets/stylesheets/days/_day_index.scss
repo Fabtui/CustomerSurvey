@@ -1,0 +1,15 @@
+.stats-item {
+  background-color: rgba(0, 0, 0, 0.05);
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #DEE2E6;
+  padding: 24px;
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  i {
+    color: black;
+  }
+}
