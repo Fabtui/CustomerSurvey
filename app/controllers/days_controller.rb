@@ -13,12 +13,13 @@ class DaysController < ApplicationController
 
   def create
     @day = Day.new(day_params)
+    @day.selected = false
     respond_to do |format|
       if @day.save
         format.html { redirect_to days_path, notice: "Votre nouvelle journée a été créee" }
         format.json # Follow the classic Rails flow and look for a create.json view
       else
-        format.html { redirect_to days_path, alert: "Une erreur s'est produite, la nouvelle journée n'a pas pu êtree" }
+        format.html { redirect_to days_path, alert: "Une erreur s'est produite, la nouvelle journée n'a pas pu être céée" }
         format.json # Follow the classic Rails flow and look for a create.json view
       end
     end
@@ -59,6 +60,21 @@ class DaysController < ApplicationController
     @day.bad = params[:bad].to_i
     @day.total = params[:bad].to_i + params[:good].to_i
     @day.save
+  end
+
+  def select
+    @day = Day.find(params[:id])
+    if @day.selected
+      @day.selected = false
+    else
+      Day.all.each do |day|
+        day.selected = false
+        day.save
+      end
+      @day.selected = true
+    end
+    @day.save
+    redirect_to days_path
   end
 
   private
