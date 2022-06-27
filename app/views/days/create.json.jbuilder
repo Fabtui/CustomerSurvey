@@ -1,6 +1,8 @@
 if @day.persisted?
-  json.form json.partial!("shared/save_confirm.html.erb")
-  json.inserted_item json.call("pages/home.html.erb")
+  json.id(@day.id)
+  json.name(@day.name)
+  json.date(@day.date.strftime('%d/%m/%Y'))
+  json.notice json.partial!("shared/new_confirm.html.erb")
 else
   json.form json.call("pages/home.html.erb")
 end

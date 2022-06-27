@@ -7,8 +7,13 @@ const newDay = () => {
     const newForm = document.querySelector('#new_day')
 
     const container = document.querySelector('.container')
-    const display = (response) => {
-      container.insertAdjacentHTML('beforeend', response['form'])
+    const display = (data) => {
+      container.insertAdjacentHTML('beforeend', data)
+    }
+
+    const formSelector = document.querySelector('#save-day-select')
+    const insert = (id, name, date) => {
+      formSelector.insertAdjacentHTML('beforeend', `<option class="days-item" value="${id}">${date} - ${name}</option>'`)
     }
 
     const toggleHidden = () => {
@@ -26,10 +31,11 @@ const newDay = () => {
         body: new FormData(newForm)
       })
         .then(response => response.json())
+        .then(toggleHidden())
         .then((data) => {
-          display(data['form'])
+          insert(data["id"], data['name'], data['date'])
+          display(data['notice'])
         })
-        .then(toggleHidden());
     })
   };
 }
