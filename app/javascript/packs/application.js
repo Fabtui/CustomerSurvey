@@ -14,6 +14,7 @@ import { saveStates } from '../components/save_states'
 import { displayNewForm } from '../components/display_new_day_form'
 import { newDay } from '../components/new_day'
 import { displaySaveModal } from '../components/display_save_modal'
+import { cancelSave } from '../components/cancel_save'
 
 Rails.start()
 Turbolinks.start()
@@ -30,4 +31,5 @@ document.addEventListener('turbolinks:load', () => {
   displayNewForm();
   newDay();
   displaySaveModal();
+  cancelSave();
 })
