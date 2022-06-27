@@ -13,6 +13,7 @@ class DaysController < ApplicationController
 
   def create
     @day = Day.new(day_params)
+    @day.selected = false
     respond_to do |format|
       if @day.save
         format.html { redirect_to days_path, notice: "Votre nouvel évènement a été créé" }
@@ -59,6 +60,21 @@ class DaysController < ApplicationController
     @day.bad = params[:bad].to_i
     @day.total = params[:bad].to_i + params[:good].to_i
     @day.save
+  end
+
+  def select
+    @day = Day.find(params[:id])
+    if @day.selected
+      @day.selected = false
+    else
+      Day.all.each do |day|
+        day.selected = false
+        day.save
+      end
+      @day.selected = true
+    end
+    @day.save
+    redirect_to days_path
   end
 
   private

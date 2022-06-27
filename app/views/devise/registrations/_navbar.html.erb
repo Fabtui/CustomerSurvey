@@ -1,0 +1,39 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <div class="navbar-brand">
+
+    <% if user_signed_in? && current_user.logo.attached? %>
+      <div class="nav-logo">
+        <%= cl_image_tag current_user.logo.key, crop: :fill, class: "navbar-brand" %>
+      </div>
+    <% end %>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <%= image_tag "gears.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <h6 id="total-link" class="dropdown-item"><strong>Total</strong></h6>
+              <hr>
+              <%= link_to "Accueil", root_path, class: "dropdown-item", data: { confirm: "Vous allez perdre vos données si vous retournez à la page d'accueil, êtes vous sûre?" } %>
+              <h6 id="save-link" class="dropdown-item">Sauvegarder</h6>
+              <%= link_to "Journées", days_path, class: "dropdown-item", data: { confirm: "new-modal" } %>
+              <%= link_to "Editer mon profil", edit_user_registration_path(current_user.id), class: "dropdown-item", data: { confirm: "new-modal" } %>
+              <%= link_to "Déconnection", destroy_user_session_path, method: :delete, class: "dropdown-item", data: { confirm: "new-modal" } %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

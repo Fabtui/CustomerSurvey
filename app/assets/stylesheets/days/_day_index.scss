@@ -14,7 +14,21 @@
   }
 }
 
-.stat-header-links {
+.stat-header-left {
+  display: flex;
+}
+
+.selected i {
+  margin-left: 12px;
+  color: $primary;
+}
+
+.unselected i {
+  margin-left: 12px;
+  color: black;
+}
+
+.stat-header-right {
   a {
     color: black;
     text-decoration: none;
