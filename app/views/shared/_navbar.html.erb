@@ -19,9 +19,11 @@
           <li class="nav-item dropdown">
             <%= image_tag "gears.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <h6 id="total-link" class="dropdown-item">Total</h6>
-              <%= link_to "Edit", edit_user_registration_path(current_user.id), class: "dropdown-item", data: { confirm: "Vous allez perdre vos données, êtes vous sûre?" } %>
-              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item", data: { confirm: "Vous allez perdre vos données, êtes vous sûre?" } %>
+              <h6 id="total-link" class="dropdown-item"><strong>Total</strong></h6>
+              <hr>
+              <%= link_to "Journées", days_path, class: "dropdown-item", data: { confirm: "Vous allez perdre vos données si vous n'êtes pas connecté, êtes vous sûre?" } %>
+              <%= link_to "Editer mon profil", edit_user_registration_path(current_user.id), class: "dropdown-item", data: { confirm: "Vous allez perdre vos données si vous n'êtes pas connecté, êtes vous sûre?" } %>
+              <%= link_to "Déconnection", destroy_user_session_path, method: :delete, class: "dropdown-item", data: { confirm: "Vous allez perdre vos données si vous n'êtes pas connecté, êtes vous sûre?" } %>
             </div>
           </li>
         <% else %>

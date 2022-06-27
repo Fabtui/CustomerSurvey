@@ -1,0 +1,17 @@
+<div class="container">
+<ul>
+  <% @days.each do |day| %>
+    <li>
+      <%= day.name %>
+    </li>
+  <% end %>
+</ul>
+
+<div class="new-day-dropdown">
+  <button class="btn btn-secondary new-day-dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Nouvelle journée
+  </button>
+  <div class="new-day-dropdown">
+    <%= render 'new', day:@day %>
+  </div>
+</div>
