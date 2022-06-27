@@ -17,9 +17,17 @@
   flex-direction: column;
 }
 
-.btn-success {
+.btn-success, .btn-danger {
   color: white;
   &:hover {
     color: white;
   }
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: flex;
 }
