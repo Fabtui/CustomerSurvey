@@ -16,3 +16,14 @@
     object-fit: contain;
   }
 }
+
+#total-link, #save-link {
+  display: flex;
+  height: 32px;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
