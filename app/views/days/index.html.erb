@@ -4,9 +4,14 @@
   <div class="stats-item">
     <div class="stat-header">
       <h5><strong><%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %></strong></h5>
-      <%= link_to day_path(day.id), method: 'delete', data: { confirm: "Etes vous sûre de vouloir supprimer cette journée?" } do %>
-        <i class="fa fa-trash" aria-hidden="true"></i>
-      <% end %>
+      <div class="stat-header-links">
+        <%= link_to edit_day_path(day.id) do %>
+          <%= fa_icon "pencil" %>
+        <% end %>
+        <%= link_to day_path(day.id), method: 'delete', data: { confirm: "Etes vous sûre de vouloir supprimer cette journée?" } do %>
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        <% end %>
+      </div>
     </div>
     <% if day.good %>
       <%= render 'stats_table', day:day %>
