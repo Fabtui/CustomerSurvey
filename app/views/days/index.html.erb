@@ -13,7 +13,7 @@
           <%= link_to edit_day_path(day.id) do %>
             <%= fa_icon "pencil" %>
           <% end %>
-          <%= link_to day_path(day.id), method: 'delete', data: { confirm: "Etes vous sûre de vouloir supprimer cette journée?" } do %>
+          <%= link_to day_path(day.id), method: 'delete', data: { confirm: "Etes vous sûre de vouloir supprimer cet évènement?" } do %>
             <i class="fa fa-trash" aria-hidden="true"></i>
           <% end %>
         </div>
@@ -22,12 +22,12 @@
       <% if day.good %>
         <%= render 'stats_table', day:day %>
       <% else %>
-        <h6 class='mt-4 text-center'>Aucune donnée pour cette journée</h6>
+        <h6 class='mt-4 text-center'>Aucune donnée pour cet évènement</h6>
       <% end %>
     </div>
   <% end %>
   <div class="btn btn-success mt-4", id="new-day-button">
-    Créer une nouvelle journée
+    Créer un nouvel évènement
   </div>
   <div class="index-new-modal">
     <div id="new-modal" class="hidden mt-4">

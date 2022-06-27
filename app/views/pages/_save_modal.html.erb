@@ -1,7 +1,7 @@
 <div class="save-container hidden">
   <div class="save-content">
   <i class='fa fa-warning' style='color: red;'> Veuillez être connecté à internet sinon vos données seront perdues</i>
-    <h5 class='mt-4 danger'>Choisir une journée :</h5>
+    <h5 class='mt-4 danger'>Choisir une évènement :</h5>
     <select id="save-day-select" class="form-select" aria-label="Default select example">
       <% days.each do |day| %>
       <option class="days-item" value="<%= day.id %>">
@@ -10,7 +10,7 @@
       <% end %>
     </select>
     <div class="btn btn-success mt-4", id="new-day-button">
-      Créer une nouvelle journée
+      Créer un nouvel évènement
     </div>
     <div id="new-modal" class="hidden mt-4">
     <%= render "days/new" %>
