@@ -1,5 +1,11 @@
 <div class="container">
-  <h3 class='text-center'>Qu'avez vous pensez de notre Xsap Game ?</h3>
+
+  <% if @selected_day.empty? %>
+    <h3 class='text-center'>Donnez nous votre avis!</h3>
+  <% else %>
+    <h3 class='text-center'><%= @selected_day.first.tag_line %></h3>
+  <% end %>
+
   <div class="smiley-container">
     <div class="smiley-container-content">
       <div class="smiley">

@@ -3,8 +3,13 @@
   <% @days.each do |day| %>
     <div class="stats-item">
       <div class="stat-header">
-        <h5><strong><%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %></strong></h5>
-        <div class="stat-header-links">
+        <div class="stat-header-left">
+          <h5><strong><%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %></strong></h5>
+          <%= link_to day_select_path(day.id), method: :post, class:"#{day.selected ? "selected" : "unselected"}" do %>
+            <%= fa_icon "check" %>
+          <% end %>
+        </div>
+        <div class="stat-header-right">
           <%= link_to edit_day_path(day.id) do %>
             <%= fa_icon "pencil" %>
           <% end %>
