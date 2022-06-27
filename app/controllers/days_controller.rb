@@ -15,10 +15,10 @@ class DaysController < ApplicationController
     @day = Day.new(day_params)
     respond_to do |format|
       if @day.save
-        format.html { redirect_to days_path, notice: "Votre nouvelle journée a été créee" }
+        format.html { redirect_to days_path, notice: "Votre nouvel évènement a été créé" }
         format.json # Follow the classic Rails flow and look for a create.json view
       else
-        format.html { redirect_to days_path, alert: "Une erreur s'est produite, la nouvelle journée n'a pas pu êtree" }
+        format.html { redirect_to days_path, alert: "Une erreur s'est produite, la nouvel évènement n'a pu être créé" }
         format.json # Follow the classic Rails flow and look for a create.json view
       end
     end
@@ -31,7 +31,7 @@ class DaysController < ApplicationController
   def update
     @day = Day.find(params[:id])
     @day.update(day_params)
-    redirect_to days_path, notice: "Votre journée a été éditée"
+    redirect_to days_path, notice: "Votre évènement a été édité"
     # @day = Day.new
     # puts "---------------------"
     # puts params
