@@ -8,8 +8,15 @@
       </option>
       <% end %>
     </select>
-  <h5 class="mt-4">Ou :</h5>
-  <div class="btn btn-success">Créer une nouvelle journée</div>
-  <div id="save-submit-button" class="btn btn-primary mt-4">Sauvegarder</div>
+    <h5 class="mt-4">Ou :</h5>
+    <div class="btn btn-success", id="new-day-button">
+      Créer une nouvelle journée
+    </div>
+    <div id="save-modal" class="hidden mt-4">
+    <%= render "days/new" %>
+    </div>
+    <div id="save-submit-button" class="btn btn-primary mt-4">
+      Sauvegarder
+    </div>
   </div>
 </div>
