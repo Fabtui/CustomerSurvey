@@ -1,8 +1,8 @@
 import { csrfToken } from "@rails/ujs"
 
 const newDay = () => {
-  const newModal = document.querySelector('#new-modal');
-  if (newModal) {
+  const saveContainer = document.querySelector('.save-container')
+  if (saveContainer) {
     const saveButton = document.querySelector('#save-new-day')
     const newForm = document.querySelector('#new_day')
 

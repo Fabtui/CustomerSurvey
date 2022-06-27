@@ -1,22 +1,32 @@
 <div class="container">
-<%= render 'shared/back_link' %>
+  <%= render 'shared/back_link' %>
   <% @days.each do |day| %>
-  <div class="stats-item">
-    <div class="stat-header">
-      <h5><strong><%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %></strong></h5>
-      <div class="stat-header-links">
-        <%= link_to edit_day_path(day.id) do %>
-          <%= fa_icon "pencil" %>
-        <% end %>
-        <%= link_to day_path(day.id), method: 'delete', data: { confirm: "Etes vous sûre de vouloir supprimer cette journée?" } do %>
-          <i class="fa fa-trash" aria-hidden="true"></i>
-        <% end %>
+    <div class="stats-item">
+      <div class="stat-header">
+        <h5><strong><%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %></strong></h5>
+        <div class="stat-header-links">
+          <%= link_to edit_day_path(day.id) do %>
+            <%= fa_icon "pencil" %>
+          <% end %>
+          <%= link_to day_path(day.id), method: 'delete', data: { confirm: "Etes vous sûre de vouloir supprimer cette journée?" } do %>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          <% end %>
+        </div>
       </div>
+      <h7><%= day.location %></h7>
+      <% if day.good %>
+        <%= render 'stats_table', day:day %>
+      <% else %>
+        <h6 class='mt-4 text-center'>Aucune donnée pour cette journée</h6>
+      <% end %>
     </div>
-    <% if day.good %>
-      <%= render 'stats_table', day:day %>
-    <% else %>
-      <h6>Aucune donnée pour cette journée</h6>
-    <% end %>
-  </div>
   <% end %>
+  <div class="btn btn-success mt-4", id="new-day-button">
+    Créer une nouvelle journée
+  </div>
+  <div class="index-new-modal">
+    <div id="new-modal" class="hidden mt-4">
+      <%= render "days/new" %>
+    </div>
+  </div>
+</div>
