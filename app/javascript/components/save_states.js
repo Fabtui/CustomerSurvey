@@ -4,6 +4,7 @@ const saveStates = () => {
   const saveButton = document.querySelector('#save-submit-button');
   if (saveButton) {
     const daySelector = document.querySelector('#save-day-select');
+    const replaceRadioButton = document.querySelector('#replace-radio-button');
 
     const container = document.querySelector('.container')
     const display = (response) => {
@@ -12,6 +13,7 @@ const saveStates = () => {
 
     saveButton.addEventListener('click', () => {
       const dayId = daySelector.value;
+      const replaceValue = replaceRadioButton.checked
       // const params = {
       //     good: localStorage.getItem('like'),
       //     bad: localStorage.getItem('dislike')
@@ -21,7 +23,7 @@ const saveStates = () => {
           // headers: { "Accept": "application/json", "X-CSRF-Token": csrfToken() },
           // body: JSON.stringify( params )
       };
-      fetch( `/days/${dayId}/save?good=${localStorage.getItem('like')}&bad=${localStorage.getItem('dislike')}`, options )
+      fetch( `/days/${dayId}/save?good=${localStorage.getItem('like')}&bad=${localStorage.getItem('dislike')}&replace=${replaceValue}`, options )
           .then( response => response.json() )
           .then( response => {
               display(response)

@@ -39,6 +39,7 @@ class DaysController < ApplicationController
     @day = Day.find(params[:id])
     @day.update(day_params)
     redirect_to days_path, notice: "Votre évènement a été édité"
+
     # @day = Day.new
     # puts "---------------------"
     # puts params
@@ -62,9 +63,21 @@ class DaysController < ApplicationController
 
   def save
     @day = Day.find(params[:id])
-    @day.good = params[:good].to_i
-    @day.bad = params[:bad].to_i
-    @day.total = params[:bad].to_i + params[:good].to_i
+    if params[:replace] == 'true'
+      @day.good = params[:good].to_i
+      @day.bad = params[:bad].to_i
+      @day.total = params[:bad].to_i + params[:good].to_i
+    else
+      good = @day.good + params[:good].to_i
+      bad = @day.bad + params[:bad].to_i
+      total = (good.to_i + bad.to_i)
+      puts "good: #{good}"
+      puts "bad: #{bad}"
+      puts "totzal: #{total}"
+      @day.good = good
+      @day.bad = bad
+      @day.total = total
+    end
     @day.save
   end
 
