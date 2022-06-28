@@ -70,13 +70,9 @@ class DaysController < ApplicationController
     else
       good = @day.good + params[:good].to_i
       bad = @day.bad + params[:bad].to_i
-      total = (good.to_i + bad.to_i)
-      puts "good: #{good}"
-      puts "bad: #{bad}"
-      puts "totzal: #{total}"
       @day.good = good
       @day.bad = bad
-      @day.total = total
+      @day.total = (good.to_i + bad.to_i)
     end
     @day.save
   end
