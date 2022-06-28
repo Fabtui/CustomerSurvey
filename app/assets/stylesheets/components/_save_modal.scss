@@ -1,4 +1,5 @@
 .save-container {
+  padding: 0 12px;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -20,4 +21,10 @@
 #new-modal:hover {
   cursor: pointer;
   margin: 0;
+}
+
+.save-radio-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 8px;
 }

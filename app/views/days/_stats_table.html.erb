@@ -16,8 +16,13 @@
     </tr>
     <tr>
       <th scope="row">Poucentages</th>
-      <td><%= ((day.bad * 100) / day.total).round %>%</td>
-      <td><%= ((day.good * 100) / day.total).round %>%</td>
+      <% if day.total == 0 %>
+        <td>0%</td>
+        <td>0%</td>
+      <% else %>
+        <td><%= ((day.bad * 100) / day.total).round %>%</td>
+        <td><%= ((day.good * 100) / day.total).round %>%</td>
+      <% end %>
       <td>100%</td>
     </tr>
   </tbody>
