@@ -1,6 +1,6 @@
 class DaysController < ApplicationController
   def index
-    @days = Day.all.order(date: :desc)
+    @days = Day.where(user_id: current_user.id).order(date: :desc)
     @day = Day.new
     respond_to do |format|
       format.html
@@ -19,7 +19,9 @@ class DaysController < ApplicationController
 
   def create
     @day = Day.new(day_params)
-    @day.selected = false
+    @day.user_id = current_user.id
+    all_days_unselected
+    @day.selected = true
     respond_to do |format|
       if @day.save
         format.html { redirect_to days_path, notice: "Votre nouvel évènement a été créé" }
@@ -82,10 +84,7 @@ class DaysController < ApplicationController
     if @day.selected
       @day.selected = false
     else
-      Day.all.each do |day|
-        day.selected = false
-        day.save
-      end
+      all_days_unselected
       @day.selected = true
     end
     @day.save
@@ -97,4 +96,12 @@ class DaysController < ApplicationController
   def day_params
     params.require(:day).permit(:name, :location, :tag_line, :date)
   end
+
+  def all_days_unselected
+    Day.all.each do |day|
+      day.selected = false
+      day.save
+    end
+  end
+
 end
