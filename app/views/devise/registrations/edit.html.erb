@@ -7,7 +7,8 @@
 
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :logo, as: :file %>
+    <%= f.input :logo, as: :file, input_html: {id: 'photo-input'}, hint:"Ce logo sera visible dans la barre de navigation" %>
+    <%= image_tag "", width: 300, class: "hidden", id: "photo-preview" %>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
@@ -29,6 +30,7 @@
   </div>
 
   <div class="form-actions">
+    <%= link_to "Annuler", root_path,class:'btn btn-warning' %>
     <%= f.button :submit, "Sauvegarder", class:'btn btn-primary' %>
   </div>
 <% end %>
