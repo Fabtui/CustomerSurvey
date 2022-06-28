@@ -1,5 +1,5 @@
 <div class="container">
-<h2>Sign up</h2>
+<h2>Créer un compte</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
@@ -15,12 +15,13 @@
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
+                label: "Confirmer le mot de passe",
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up", class:'btn btn-primary' %>
+    <%= f.button :submit, "Créer un compte", class:'btn btn-primary' %>
   </div>
 <% end %>
 

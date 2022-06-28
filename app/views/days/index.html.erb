@@ -1,11 +1,5 @@
 <div class="container">
   <%= render 'shared/back_link' %>
-  <div class="download-link-container">
-    <%= link_to days_path(format: :xlsx) do %>
-      <%= fa_icon "download" %>
-    <% end %>
-  </div>
-
   <% @days.each do |day| %>
     <div class="stats-item">
       <div class="stat-header">
