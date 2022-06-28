@@ -2,6 +2,12 @@ class DaysController < ApplicationController
   def index
     @days = Day.all.order(date: :desc)
     @day = Day.new
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="Evenements_CustomerSurvey.xlsx"'
+      }
+    end
   end
 
   def show

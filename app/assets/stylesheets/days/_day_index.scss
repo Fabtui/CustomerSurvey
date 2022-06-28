@@ -40,6 +40,14 @@
   }
 }
 
+.download-link-container {
+  display: flex;
+  justify-content: flex-end;
+  a {
+    color: black;
+  }
+}
+
 .index-new-modal {
   padding: 0 10%;
 }
