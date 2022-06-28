@@ -1,7 +1,7 @@
 const displaySaveModal = () => {
-  const saveButton = document.querySelector('#save-link');
-
-  if (saveButton) {
+  const smileyContainer = document.querySelector('.smiley-container')
+  if (smileyContainer) {
+    const saveButton = document.querySelector('#save-link');
 
     const toggleHidden = () => {
       const saveModal = document.querySelector('.save-container');

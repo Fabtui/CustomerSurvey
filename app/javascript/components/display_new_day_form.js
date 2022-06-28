@@ -19,6 +19,7 @@ const displayNewForm = () => {
     cancelButton.addEventListener('click', (e) => {
       e.preventDefault();
       toggleHidden();
+      window.scrollTo(0, document.body.scrollHeight);
     })
   };
 }
