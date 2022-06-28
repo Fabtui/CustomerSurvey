@@ -1,9 +1,11 @@
 <div class="container">
   <%= render 'shared/back_link' %>
   <div class="download-link-container">
+  <% unless Day.count.zero? %>
     <%= link_to days_path(format: :xlsx) do %>
       <%= fa_icon "download" %>
     <% end %>
+  <% end %>
   </div>
 
   <% @days.each do |day| %>
@@ -32,8 +34,10 @@
       <% end %>
     </div>
   <% end %>
-  <div class="btn btn-success mt-4", id="new-day-button">
-    Créer un nouvel évènement
+  <div class="new-day-button-container">
+    <div class="btn btn-success mt-4", id="new-day-button">
+      Créer un nouvel évènement
+    </div>
   </div>
   <div class="index-new-modal">
     <div id="new-modal" class="hidden mt-4">
