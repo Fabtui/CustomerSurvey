@@ -16,6 +16,7 @@ import { newDay } from '../components/new_day'
 import { displaySaveModal } from '../components/display_save_modal'
 import { cancelSave } from '../components/cancel_save'
 import { previewImageOnFileSelect } from '../components/photo_preview'
+import { navbarButton } from '../components/navbar_button'
 
 Rails.start()
 Turbolinks.start()
@@ -34,4 +35,5 @@ document.addEventListener('turbolinks:load', () => {
   displaySaveModal();
   cancelSave();
   previewImageOnFileSelect();
+  navbarButton();
 })
