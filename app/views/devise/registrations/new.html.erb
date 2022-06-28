@@ -9,7 +9,8 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
-    <%= f.input :logo, as: :file %>
+    <%= f.input :logo, as: :file, input_html: {id: 'photo-input'}, hint:"Ce logo sera visible dans la barre de navigation" %>
+    <%= image_tag "", width: 300, class: "hidden", id: "photo-preview" %>
     <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
