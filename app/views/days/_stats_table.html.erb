@@ -3,24 +3,28 @@
     <tr>
       <th scope="col"></th>
       <th><%= image_tag 'dislike.png', height: '25', width: '25'  %></th>
+      <th><%= image_tag 'middle.png', height: '25', width: '25'  %></th>
       <th><%= image_tag 'like.png', height: '25', width: '25'  %></th>
       <th>Total</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">Nombres</th>
+      <th scope="row">N</th>
       <td><%= day.bad %></td>
+      <td><%= day.middle %></td>
       <td><%= day.good %></td>
       <td><%= day.total %></td>
     </tr>
     <tr>
-      <th scope="row">Poucentages</th>
+      <th scope="row">%</th>
       <% if day.total == 0 %>
+        <td>0%</td>
         <td>0%</td>
         <td>0%</td>
       <% else %>
         <td><%= ((day.bad * 100) / day.total).round %>%</td>
+        <td><%= ((day.middle * 100) / day.total).round %>%</td>
         <td><%= ((day.good * 100) / day.total).round %>%</td>
       <% end %>
       <td>100%</td>

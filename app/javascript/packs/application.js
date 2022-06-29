@@ -41,7 +41,7 @@ document.addEventListener('turbolinks:load', () => {
   navbarButton();
   initSweetalert('#home-link-button', {
     title: "Attention!",
-    text: "Vous allez perdre vos données si vous n'êtes pas connecté à internet, êtes vous sûre?",
+    text: "Vous allez perdre vos données non sauvegardées si vous n'êtes pas connecté à internet, êtes vous sûre?",
     icon: "warning",
     buttons: ["Annuler", "Continuer"],
     className: "sweet-alert-modal",
@@ -53,7 +53,7 @@ document.addEventListener('turbolinks:load', () => {
   });
   initSweetalert('#days-link-button', {
     title: "Attention!",
-    text: "Vous allez perdre vos données si vous n'êtes pas connecté à internet, êtes vous sûre?",
+    text: "Vous allez perdre vos données non sauvegardées si vous n'êtes pas connecté à internet, êtes vous sûre?",
     icon: "warning",
     buttons: ["Annuler", "Continuer"],
     className: "sweet-alert-modal",
@@ -65,7 +65,7 @@ document.addEventListener('turbolinks:load', () => {
   });
   initSweetalert('#edit-link-button', {
     title: "Attention!",
-    text: "Vous allez perdre vos données si vous n'êtes pas connecté à internet, êtes vous sûre?",
+    text: "Vous allez perdre vos données non sauvegardées si vous n'êtes pas connecté à internet, êtes vous sûre?",
     icon: "warning",
     buttons: ["Annuler", "Continuer"],
     className: "sweet-alert-modal",
@@ -77,7 +77,7 @@ document.addEventListener('turbolinks:load', () => {
   });
   initSweetalert('#log-out-link-button', {
     title: "Attention!",
-    text: "Vous allez perdre vos données si vous vous déconnectez, êtes vous sûre?",
+    text: "Vous allez perdre vos données non sauvegardées si vous vous déconnectez, êtes vous sûre?",
     icon: "warning",
     buttons: ["Annuler", "Continuer"],
     className: "sweet-alert-modal",

@@ -23,7 +23,7 @@ const saveStates = () => {
           // headers: { "Accept": "application/json", "X-CSRF-Token": csrfToken() },
           // body: JSON.stringify( params )
       };
-      fetch( `/days/${dayId}/save?good=${localStorage.getItem('like')}&bad=${localStorage.getItem('dislike')}&replace=${replaceValue}`, options )
+      fetch( `/days/${dayId}/save?good=${localStorage.getItem('like')}&middle=${localStorage.getItem('middle')}&bad=${localStorage.getItem('dislike')}&replace=${replaceValue}`, options )
           .then( response => response.json() )
           .then( response => {
               display(response)
