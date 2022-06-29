@@ -67,14 +67,17 @@ class DaysController < ApplicationController
     @day = Day.find(params[:id])
     if params[:replace] == 'true'
       @day.good = params[:good].to_i
+      @day.middle = params[:middle].to_i
       @day.bad = params[:bad].to_i
-      @day.total = params[:bad].to_i + params[:good].to_i
+      @day.total = params[:bad].to_i + params[:good].to_i + params[:middle].to_i
     else
       good = @day.good + params[:good].to_i
       bad = @day.bad + params[:bad].to_i
+      middle = @day.middle + params[:middle].to_i
       @day.good = good
       @day.bad = bad
-      @day.total = (good.to_i + bad.to_i)
+      @day.middle = middle
+      @day.total = (good.to_i + bad.to_i + middle.to_i)
     end
     @day.save
   end

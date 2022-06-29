@@ -13,7 +13,7 @@ const newDay = () => {
 
     const formSelector = document.querySelector('#save-day-select')
     const insert = (id, name, date) => {
-      formSelector.insertAdjacentHTML('beforeend', `<option class="days-item" value="${id}">${date} - ${name}</option>'`)
+      formSelector.insertAdjacentHTML('afterbegin', `<option class="days-item" value="${id}">${date} - ${name}</option>'`)
     }
 
     const toggleHidden = () => {

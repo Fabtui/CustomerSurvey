@@ -1,6 +1,7 @@
 const surveyClick = () => {
   localStorage.setItem('like', '0');
   localStorage.setItem('dislike', '0');
+  localStorage.setItem('middle', '0');
   const likeFaces = document.querySelectorAll('.face-button');
   if (likeFaces) {
     const addToLocals = (like) => {
