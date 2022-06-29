@@ -82,12 +82,26 @@
       cursor: pointer;
       text-decoration: none;
     }
+
+    .error-image {
+      justify-content: center;
+      width: 100%;
+      display: flex;
+      height: 25vh;
+    }
+
+    .error-image img {
+      object-fit: contain;
+    }
   </style>
 </head>
 
 <body class="rails-default-error-page">
   <!-- This file lives in public/404.html -->
   <div class="container">
+    <div class="error-image">
+      <img src="./dislike.png" alt="">
+    </div>
     <div class="error-content">
       <h1>Oups...</h1>
       <p>Vous n'êtes pas sensé être ici...</p>
