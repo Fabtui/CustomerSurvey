@@ -44,7 +44,7 @@ document.addEventListener('turbolinks:load', () => {
     text: "Vous allez perdre vos données si vous n'êtes pas connecté à internet, êtes vous sûre?",
     icon: "warning",
     buttons: ["Annuler", "Continuer"],
-    className: "sweet-alert",
+    className: "sweet-alert-modal",
     }, (value) => {
       const link = document.querySelector('#home-link');
       if (value) {
@@ -56,7 +56,7 @@ document.addEventListener('turbolinks:load', () => {
     text: "Vous allez perdre vos données si vous n'êtes pas connecté à internet, êtes vous sûre?",
     icon: "warning",
     buttons: ["Annuler", "Continuer"],
-    className: "sweet-alert",
+    className: "sweet-alert-modal",
     }, (value) => {
       const link = document.querySelector('#days-link');
       if (value) {
@@ -68,7 +68,7 @@ document.addEventListener('turbolinks:load', () => {
     text: "Vous allez perdre vos données si vous n'êtes pas connecté à internet, êtes vous sûre?",
     icon: "warning",
     buttons: ["Annuler", "Continuer"],
-    className: "sweet-alert",
+    className: "sweet-alert-modal",
     }, (value) => {
       const link = document.querySelector('#edit-link');
       if (value) {
@@ -80,7 +80,7 @@ document.addEventListener('turbolinks:load', () => {
     text: "Vous allez perdre vos données si vous vous déconnectez, êtes vous sûre?",
     icon: "warning",
     buttons: ["Annuler", "Continuer"],
-    className: "sweet-alert",
+    className: "sweet-alert-modal",
     }, (value) => {
       const link = document.querySelector('#log-out-link');
       if (value) {

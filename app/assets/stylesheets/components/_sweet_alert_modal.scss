@@ -1,0 +1,27 @@
+.sweet-alert-modal .swal-text {
+  text-align: center;
+}
+
+.sweet-alert-modal .swal-footer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.swal-button--cancel {
+  color: white;
+  background-color: $danger;
+  transition: 0.2s;
+  &:hover {
+    transition: 0.2s;
+    background-color: #fd10149c !important;
+  }
+}
+
+.swal-button--confirm {
+  background-color: $primary;
+  transition: 0.2s;
+  &:hover {
+    transition: 0.2s;
+    background-color: #0d6dfd9d !important;
+  }
+}
