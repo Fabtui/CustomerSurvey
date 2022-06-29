@@ -18,6 +18,7 @@ import { cancelSave } from '../components/cancel_save'
 import { previewImageOnFileSelect } from '../components/photo_preview'
 import { navbarButton } from '../components/navbar_button'
 import { initSweetalert } from '../components/init_sweet_alert'
+import { initSweetalertMultiDestroy } from '../components/init_sweet_alert_multi_destroy'
 
 Rails.start()
 Turbolinks.start()
@@ -87,4 +88,5 @@ document.addEventListener('turbolinks:load', () => {
         link.click();
       }
   });
+  initSweetalertMultiDestroy('.day-delete-button')
 })
