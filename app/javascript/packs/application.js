@@ -17,6 +17,7 @@ import { displaySaveModal } from '../components/display_save_modal'
 import { cancelSave } from '../components/cancel_save'
 import { previewImageOnFileSelect } from '../components/photo_preview'
 import { navbarButton } from '../components/navbar_button'
+import { initSweetalert } from '../components/init_sweet_alert'
 
 Rails.start()
 Turbolinks.start()
@@ -24,6 +25,8 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap"
+
+
 
 document.addEventListener('turbolinks:load', () => {
   surveyClick();
@@ -36,4 +39,52 @@ document.addEventListener('turbolinks:load', () => {
   cancelSave();
   previewImageOnFileSelect();
   navbarButton();
+  initSweetalert('#home-link-button', {
+    title: "Attention!",
+    text: "Vous allez perdre vos données si vous n'êtes pas connecté à internet, êtes vous sûre?",
+    icon: "warning",
+    buttons: ["Annuler", "Continuer"],
+    className: "sweet-alert",
+    }, (value) => {
+      const link = document.querySelector('#home-link');
+      if (value) {
+        link.click();
+      }
+  });
+  initSweetalert('#days-link-button', {
+    title: "Attention!",
+    text: "Vous allez perdre vos données si vous n'êtes pas connecté à internet, êtes vous sûre?",
+    icon: "warning",
+    buttons: ["Annuler", "Continuer"],
+    className: "sweet-alert",
+    }, (value) => {
+      const link = document.querySelector('#days-link');
+      if (value) {
+        link.click();
+      }
+  });
+  initSweetalert('#edit-link-button', {
+    title: "Attention!",
+    text: "Vous allez perdre vos données si vous n'êtes pas connecté à internet, êtes vous sûre?",
+    icon: "warning",
+    buttons: ["Annuler", "Continuer"],
+    className: "sweet-alert",
+    }, (value) => {
+      const link = document.querySelector('#edit-link');
+      if (value) {
+        link.click();
+      }
+  });
+  initSweetalert('#log-out-link-button', {
+    title: "Attention!",
+    text: "Vous allez perdre vos données si vous vous déconnectez, êtes vous sûre?",
+    icon: "warning",
+    buttons: ["Annuler", "Continuer"],
+    className: "sweet-alert",
+    }, (value) => {
+      const link = document.querySelector('#log-out-link');
+      if (value) {
+        link.click();
+      }
+  });
 })
