@@ -20,7 +20,8 @@
                   input_html: { autocomplete: "date" } %>
       <%= f.input :tag_line,
                   label: 'Titre',
-                  placeholder: 'ex: Avez vous apprécier notre présentation',
+                  placeholder: 'ex: Avez vous apprécier notre présentation?',
+                  hint: "Titre affiché au dessus du vote (par défault: 'Donnez nous votre avis!')",
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "tag_line" } %>

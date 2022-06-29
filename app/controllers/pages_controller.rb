@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
-    @days = Day.all
+    @days = Day.where(user_id: current_user.id).order(date: :desc)
     @day = Day.new
-    @selected_day = Day.where(selected: true)
+    @selected_day = @days.where(selected: true)
   end
 end
