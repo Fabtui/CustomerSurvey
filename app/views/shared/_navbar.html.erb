@@ -13,18 +13,24 @@
     <ul class="navbar-nav me-auto">
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
-            <h6 id="total-link" class="dropdown-item"><strong>Total</strong></h6>
-            <hr>
+            <% if controller_name === "pages" && action_name === "home" %>
+              <h6 id="total-link" class="dropdown-item"><strong>Total</strong></h6>
+              <h6 id="save-link" class="dropdown-item">Sauvegarder</h6>
+              <hr>
+            <% end %>
+
             <h6 id="home-link-button" class="dropdown-item">Accueil</h6>
             <%= link_to "Accueil", root_path, class: "dropdown-item hidden", id:"home-link" %>
 
-            <h6 id="save-link" class="dropdown-item">Sauvegarder</h6>
+            <% if controller_name != "days" && action_name != "index" %>
+              <h6 id="days-link-button" class="dropdown-item">Evènements</h6>
+              <%= link_to "Evènements", days_path, class: "dropdown-item hidden", id:"days-link" %>
+            <% end %>
 
-            <h6 id="days-link-button" class="dropdown-item">Evènements</h6>
-            <%= link_to "Evènements", days_path, class: "dropdown-item hidden", id:"days-link" %>
-
-            <h6 id="edit-link-button" class="dropdown-item">Editer mon profil</h6>
-            <%= link_to "Editer mon profil", edit_user_registration_path(current_user.id), class: "dropdown-item hidden", id:"edit-link" %>
+            <% if controller_name != "users" && action_name != "edit" %>
+              <h6 id="edit-link-button" class="dropdown-item">Editer mon profil</h6>
+              <%= link_to "Editer mon profil", edit_user_registration_path(current_user.id), class: "dropdown-item hidden", id:"edit-link" %>
+            <% end %>
 
             <h6 id="log-out-link-button" class="dropdown-item">Déconnection</h6>
             <%= link_to "Déconnection", destroy_user_session_path, method: :delete, class: "dropdown-item hidden", id:"log-out-link" %>
