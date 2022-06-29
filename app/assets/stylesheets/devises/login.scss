@@ -1,0 +1,10 @@
+.login-image-conainer {
+  display: flex;
+  justify-content: center;
+  max-height: 20vh;
+  width: 100%;
+  margin-bottom: 24px;
+  img {
+    object-fit: contain;
+  }
+}
