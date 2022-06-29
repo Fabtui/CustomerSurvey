@@ -65,23 +65,12 @@
   padding: 12px;
   margin-right: 24px;
   transition: all 0.2s;
-  transform: translateY(-10px);
+  transform: stat-header-rightteY(-10px);
   z-index: 999;
-  h6 {
-    display: flex;
-    height: 36px;
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    align-items: center;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
 }
 
 .hide-menu {
-  transform: translateY(-450px);
+  transform: stat-header-rightteY(-450);
   opacity: 0;
 }
 

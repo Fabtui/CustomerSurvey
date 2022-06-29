@@ -15,11 +15,19 @@
         <li class="nav-item dropdown">
             <h6 id="total-link" class="dropdown-item"><strong>Total</strong></h6>
             <hr>
-            <%= link_to "Accueil", root_path, class: "dropdown-item", data: { confirm: "Vous allez perdre vos données si vous retournez à la page d'accueil, êtes vous sûre?" } %>
+            <h6 id="home-link-button" class="dropdown-item">Accueil</h6>
+            <%= link_to "Accueil", root_path, class: "dropdown-item hidden", id:"home-link" %>
+
             <h6 id="save-link" class="dropdown-item">Sauvegarder</h6>
-            <%= link_to "Evènements", days_path, class: "dropdown-item", data: { confirm: "Vous allez perdre vos données si vous n'êtes pas connecté, êtes vous sûre?" } %>
-            <%= link_to "Editer mon profil", edit_user_registration_path(current_user.id), class: "dropdown-item", data: { confirm: "Vous allez perdre vos données si vous n'êtes pas connecté, êtes vous sûre?" } %>
-            <%= link_to "Déconnection", destroy_user_session_path, method: :delete, class: "dropdown-item", data: { confirm: "Vous allez perdre vos données si vous n'êtes pas connecté, êtes vous sûre?" } %>
+
+            <h6 id="days-link-button" class="dropdown-item">Evènements</h6>
+            <%= link_to "Evènements", days_path, class: "dropdown-item hidden", id:"days-link" %>
+
+            <h6 id="edit-link-button" class="dropdown-item">Editer mon profil</h6>
+            <%= link_to "Editer mon profil", edit_user_registration_path(current_user.id), class: "dropdown-item hidden", id:"edit-link" %>
+
+            <h6 id="log-out-link-button" class="dropdown-item">Déconnection</h6>
+            <%= link_to "Déconnection", destroy_user_session_path, method: :delete, class: "dropdown-item hidden", id:"log-out-link" %>
         </li>
       <% else %>
         <li class="nav-item">
