@@ -1,9 +1,12 @@
 <div class="container">
-
   <% if @selected_day.empty? %>
     <h3 class='text-center mt-4'>Donnez nous votre avis!</h3>
   <% else %>
-    <h3 class='text-center mt-4'><%= @selected_day.first.tag_line %></h3>
+    <% if @selected_day.first.tag_line.empty? %>
+      <h3 class='text-center mt-4'>Donnez nous votre avis!</h3>
+    <% else %>
+      <h3 class='text-center mt-4'><%= @selected_day.first.tag_line %></h3>
+    <% end %>
   <% end %>
 
   <div class="smiley-container">
