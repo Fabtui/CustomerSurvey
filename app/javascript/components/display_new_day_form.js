@@ -30,7 +30,11 @@ const displayNewForm = () => {
 
     async function toggleAndThenScroll() {
       await toggleHidden()
-      window.scrollTo(0, document.body.scrollHeight)
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        left: 0,
+        behavior: 'smooth'
+      })
     }
 
     newDayButton.addEventListener('click', (e) => {
