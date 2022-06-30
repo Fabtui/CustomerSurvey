@@ -58,6 +58,21 @@
   justify-content: center;
 }
 
+.arrow-down {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  padding-left: 8px;
+  i {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 20px;
+  }
+}
+
+.hide-arrow {
+  opacity: 0;
+}
+
 .day-delete-button {
   margin: 0 8px;
 }
