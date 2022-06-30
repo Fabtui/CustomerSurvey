@@ -57,6 +57,10 @@ class DaysController < ApplicationController
   def create
     @day = Day.new(day_params)
     @day.user_id = current_user.id
+    @day.good = 0
+    @day.bad = 0
+    @day.middle = 0
+    @day.total = 0
     all_days_unselected
     @day.selected = true
     respond_to do |format|
