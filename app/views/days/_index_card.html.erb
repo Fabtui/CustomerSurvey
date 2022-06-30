@@ -7,6 +7,9 @@
       <% end %>
     </div>
     <div class="stat-header-right">
+      <%= link_to day_path(id: day.id, format: :pdf) do %>
+        <%= fa_icon "file" %>
+      <% end %>
       <%= link_to edit_day_path(day.id) do %>
         <%= fa_icon "pencil" %>
       <% end %>
