@@ -2,11 +2,25 @@
   <div class="save-content">
   <i class='fa fa-warning' style='color: red;'> Veuillez être connecté à internet sinon vos données seront perdues</i>
     <h5 class='mt-4 danger'>Choisir une évènement :</h5>
-    <select id="save-day-select" class="form-select" aria-label="Default select example">
-      <% days.each do |day| %>
+    <select id="save-day-select" class="form-select" aria-label="Default select example" value="<%= @selected_day.first.id if @selected_day.present? %>">
+
+      <% if @selected_day.present? %>
+        <option class="days-item selected-item" value="<%= @selected_day.first.id %>">
+          <%= @selected_day.first.date.strftime('%d/%m/%Y') %> - <%= @selected_day.first.name.capitalize %>
+        </option>
+      <% end %>
+      <% days.each do |day| %>">
+        <% if @selected_day.present? %>
+          <% unless @selected_day.first.id === day.id %>
+            <option class="days-item" value="<%= day.id %>">
+              <%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %>
+            </option>
+          <% end %>
+        <% else %>
         <option class="days-item" value="<%= day.id %>">
           <%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %>
         </option>
+        <% end %>
       <% end %>
     </select>
     <div class="save-radio-buttons">
