@@ -17,8 +17,9 @@ const surveyClick = () => {
 
     function displayThanksModal(){
       const thanksModal = document.querySelector('.thanks-coontainer')
-      const showModal = () => { thanksModal.style.display = 'flex'; }
-      const hideModal = () => setTimeout(thanksModal.style.display = 'none', 3000)
+      const homeContainer = document.querySelector('.home-container')
+      const showModal = () => { thanksModal.style.display = 'flex'; homeContainer.classList.add('hidden') }
+      const hideModal = () => { thanksModal.style.display = 'none'; homeContainer.classList.remove('hidden') }
       showModal()
       setTimeout(()=>{
           hideModal()
