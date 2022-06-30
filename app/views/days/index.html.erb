@@ -1,15 +1,19 @@
 <div class="container">
   <%= render 'shared/back_link' %>
   <div class="download-link-container">
-  <% unless Day.count.zero? %>
-    <%= link_to days_path(format: :xlsx) do %>
-      <%= fa_icon "download" %>
+    <% unless @days.count.zero? %>
+      <%= link_to days_path(format: :xlsx) do %>
+        <%= fa_icon "download" %>
+      <% end %>
     <% end %>
-  <% end %>
   </div>
 
-  <% @days.each do |day| %>
-    <%= render "index_card", day:day %>
+  <% if @days.count.zero? %>
+    <h6 class="text-center mt-4 mb-4">Aucun évenement créé</h6>
+  <% else %>
+    <% @days.each do |day| %>
+      <%= render "index_card", day:day %>
+    <% end %>
   <% end %>
   <div class="new-day-button-container">
     <div class="btn btn-success mt-4", id="new-day-button">
