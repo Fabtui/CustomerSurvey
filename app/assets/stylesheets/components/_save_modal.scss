@@ -17,6 +17,11 @@
   flex-direction: column;
 }
 
+.save-warning-message {
+  display: flex;
+  color: red;
+}
+
 #new-modal:hover {
   cursor: pointer;
   margin: 0;

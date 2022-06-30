@@ -19,8 +19,10 @@
               <hr>
             <% end %>
 
-            <h6 id="home-link-button" class="dropdown-item">Accueil</h6>
-            <%= link_to "Accueil", root_path, class: "dropdown-item hidden", id:"home-link" %>
+            <% if controller_name != "pages" && action_name != "home" %>
+              <h6 id="home-link-button" class="dropdown-item">Accueil</h6>
+              <%= link_to "Accueil", root_path, class: "dropdown-item hidden", id:"home-link" %>
+            <% end %>
 
             <% if controller_name != "days" && action_name != "index" %>
               <h6 id="days-link-button" class="dropdown-item">Evènements</h6>
