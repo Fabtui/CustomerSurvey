@@ -4,9 +4,9 @@
     <h5 class='mt-4 danger'>Choisir une évènement :</h5>
     <select id="save-day-select" class="form-select" aria-label="Default select example">
       <% days.each do |day| %>
-      <option class="days-item" value="<%= day.id %>">
-        <%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %>
-      </option>
+        <option class="days-item" value="<%= day.id %>">
+          <%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %>
+        </option>
       <% end %>
     </select>
     <div class="save-radio-buttons">

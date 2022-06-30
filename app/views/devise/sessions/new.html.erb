@@ -1,8 +1,8 @@
 <div class="container">
   <div class="login-container">
-    <%# <div class="login-image-conainer"> %>
-      <%#= image_tag "../../public/dislike.png", id:"login-image" %>
-    <%# </div> %>
+    <% <div class="login-image-conainer"> %>
+      <%= image_tag "../../public/dislike.png", id:"login-image" %>
+    <% </div> %>
     <h2>Se connecter</h2>
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
