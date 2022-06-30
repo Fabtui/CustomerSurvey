@@ -5,9 +5,16 @@ const displayNewForm = () => {
 
     const toggleHidden = () => {
       const saveModal = document.querySelector('#new-modal');
-      const saveButton = document.querySelector('#save-submit-button');
       saveModal.classList.toggle('hidden');
-      saveButton.classList.toggle('hidden');
+
+      const homeContainer = document.querySelector('.home-container')
+      if (homeContainer) {
+        // const saveButton = document.querySelector('#save-submit-button');
+        // saveButton.classList.toggle('hidden');
+      } else {
+        const downArrow = document.querySelector('.arrow-down')
+        downArrow.classList.toggle('hide-arrow');
+      }
     }
 
     newDayButton.addEventListener('click', (e) => {

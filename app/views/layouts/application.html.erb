@@ -36,7 +36,9 @@
   </head>
 
   <body>
+  <% if controller_name != "session" && action_name != "new" %>
     <%= render 'shared/navbar' %>
+  <% end %>
     <%= render 'shared/flashes' %>
 
     <%= yield %>
