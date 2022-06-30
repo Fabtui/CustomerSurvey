@@ -46,16 +46,16 @@ ActiveRecord::Schema.define(version: 2022_06_29_163024) do
   create_table "days", force: :cascade do |t|
     t.date "date"
     t.string "name"
-    t.integer "good"
-    t.integer "bad"
-    t.integer "total"
+    t.integer "good", default: 0
+    t.integer "bad", default: 0
+    t.integer "total", default: 0
     t.string "location"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "tag_line"
     t.boolean "selected"
-    t.integer "middle"
+    t.integer "middle", default: 0
     t.index ["user_id"], name: "index_days_on_user_id"
   end
 
