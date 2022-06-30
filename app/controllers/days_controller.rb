@@ -11,6 +11,37 @@ class DaysController < ApplicationController
   end
 
   def show
+    @day = Day.find(params[:id])
+    satisfaction = ((((@day.middle.to_f / 2) + (@day.good))*100).to_f / @day.total).round(2)
+    respond_to do |format|
+      format.pdf do
+        pdf = Prawn::Document.new
+        pdf.text "Customer Satisfaction Survey", size: 32, align: :center
+        pdf.text " "
+        pdf.text " "
+        pdf.text " "
+        pdf.text " "
+        pdf.text @day.name, size: 22
+        pdf.text @day.date.strftime('%d/%m/%Y'), size: 16
+        pdf.text @day.location, size: 16
+        pdf.text " "
+        pdf.text " "
+        pdf.text "Résultats :", size: 16
+        pdf.text " "
+        pdf.text "Mauvais: #{@day.bad}       (#{(@day.bad * 100) / @day.total} %)", size: 16
+        pdf.text "Moyen: #{@day.middle}          (#{(@day.middle * 100) / @day.total} %)", size: 16
+        pdf.text "Bon: #{@day.good}              (#{(@day.good * 100) / @day.total} %)", size: 16
+        pdf.text "--------------------------------", size: 16
+        pdf.text "Total: #{@day.total}", size: 16
+        pdf.text " "
+        pdf.text " "
+        pdf.text "Taux de satisfaction: #{satisfaction} %", size: 20
+        send_data pdf.render,
+          filename: "CustomerSurvey #{@day.date.strftime('%d/%m/%Y')}.pdf",
+          type: 'application/pdf',
+          disposition: 'inline'
+      end
+    end
   end
 
   def new
