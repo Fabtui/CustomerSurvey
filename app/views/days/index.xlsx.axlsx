@@ -17,10 +17,10 @@ wb.styles do |style|
     @days.each do |day|
       count += 1
       if day.good
-        satisfaction = "#{((((day.middle.to_f / 2) + (day.good))*200).to_f / day.total).round(2)}%"
-        good_pc = ((day.good * 200) / day.total).to_s + "%"
-        middle_pc = ((day.middle * 200) / day.total).to_s + "%"
-        bad_pc = ((day.bad * 200) / day.total).to_s + "%"
+        satisfaction = "#{((((day.middle.to_f / 2) + (day.good))*100).to_f / day.total).round(2)}%"
+        good_pc = ((day.good * 100) / day.total).to_s + "%"
+        middle_pc = ((day.middle * 100) / day.total).to_s + "%"
+        bad_pc = ((day.bad * 100) / day.total).to_s + "%"
         total_pc = "100%"
       end
       sheet.add_row [day.date.strftime('%d/%m/%Y'), day.name, day.location, day.bad, day.middle, day.good, day.total, bad_pc, middle_pc, good_pc, total_pc, satisfaction ]

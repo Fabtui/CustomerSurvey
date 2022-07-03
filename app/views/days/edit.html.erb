@@ -8,7 +8,7 @@
                   input_html: { autocomplete: "name" } %>
       <%= f.input :location,
                   label: 'Lieu',
-                  required: false,
+                  required: true,
                   autofocus: true,
                   input_html: { autocomplete: "location" } %>
       <%= f.input :date, as: :date, start_year: Date.today.year,
@@ -22,7 +22,7 @@
                   label: 'Titre',
                   placeholder: 'ex: Avez vous apprécier notre présentation?',
                   hint: "Titre affiché au dessus du vote (par défault: 'Donnez nous votre avis!')",
-                  required: true,
+                  required: false,
                   autofocus: true,
                   input_html: { autocomplete: "tag_line" } %>
     </div>
