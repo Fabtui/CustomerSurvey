@@ -18,7 +18,9 @@ class DaysController < ApplicationController
     respond_to do |format|
       format.pdf do
         pdf = Prawn::Document.new
-        pdf.text "Customer Satisfaction Survey", size: 32, align: :center
+        pdf.image "#{Rails.root}/app/assets/images/Customer.png", :at => [0,730], :width => 80, :height => 80
+        pdf.text "Customer Satisfaction", size: 32, align: :center
+        pdf.text "Survey", size: 32, align: :center
         pdf.text " "
         pdf.text " "
         pdf.text " "
@@ -26,6 +28,7 @@ class DaysController < ApplicationController
         pdf.text @day.name, size: 22
         pdf.text @day.date.strftime('%d/%m/%Y'), size: 16
         pdf.text @day.location, size: 16
+        pdf.text " "
         pdf.text " "
         pdf.text " "
         pdf.text "Résultats :", size: 16
