@@ -20,6 +20,7 @@ import { navbarButton } from '../components/navbar_button'
 import { offLineSwitch } from '../components/off_line_switch'
 import { initSweetalert } from '../components/init_sweet_alert'
 import { initSweetalertMultiDestroy } from '../components/init_sweet_alert_multi_destroy'
+import { chartJs } from '../components/chart'
 
 Rails.start()
 Turbolinks.start()
@@ -42,6 +43,7 @@ document.addEventListener('turbolinks:load', () => {
   previewImageOnFileSelect();
   navbarButton();
   offLineSwitch();
+  chartJs()
   initSweetalert('#home-link-button', {
     title: "Attention!",
     text: "Vous allez perdre vos données non sauvegardées si vous n'êtes pas connecté à internet, êtes vous sûre?",
