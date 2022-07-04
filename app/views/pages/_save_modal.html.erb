@@ -2,7 +2,7 @@
   <div class="save-content">
   <%=  %>
     <div class="save-warning-message">
-      <%= fa_icon "warning" %> <h6> Veuillez être connecté à internet sinon vos données seront perdues </h6> <%= fa_icon "warning" %>
+      <%= fa_icon "warning" %> <h6> Veuillez être connecté afin de pouvoir sauvegarder </h6> <%= fa_icon "warning" %>
     </div>
     <h5 class='mt-4 danger'>Choisir une évènement :</h5>
     <select id="save-day-select" class="form-select" aria-label="Default select example" value="<%= @selected_day.first.id if @selected_day.present? %>">
