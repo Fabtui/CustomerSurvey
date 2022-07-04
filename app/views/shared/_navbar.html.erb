@@ -17,13 +17,13 @@
               <input class="form-check-input" type="checkbox" id="OffLineSwitch">
               <label class="form-check-label" for="OffLineSwitch">Hors Ligne</label>
             </div>
+            <hr>
               <% if controller_name === "pages" && action_name === "home" %>
-                <h6 id="total-link" class="dropdown-item"><strong>Total</strong></h6>
+                <h6 id="total-link" class="dropdown-item">Total</h6>
               <% end %>
               <div id="online-links">
               <% if controller_name === "pages" && action_name === "home" %>
                 <h6 id="save-link" class="dropdown-item">Sauvegarder</h6>
-                <hr>
               <% end %>
               <% if controller_name != "pages" && action_name != "home" %>
                 <h6 id="home-link-button" class="dropdown-item">Accueil</h6>
@@ -36,6 +36,7 @@
               <% end %>
 
               <% if controller_name != "users" && action_name != "edit" %>
+                <hr>
                 <h6 id="edit-link-button" class="dropdown-item">Editer mon profil</h6>
                 <%= link_to "Editer mon profil", edit_user_registration_path(current_user.id), class: "dropdown-item hidden", id:"edit-link" %>
               <% end %>

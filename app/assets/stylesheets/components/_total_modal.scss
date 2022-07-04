@@ -12,8 +12,8 @@
 }
 
 .total-container-items {
-  padding: 29px 65px;
-  background-color: $light-gray;
+  padding: 44px 80px;
+  background-color: #f1efefed;
   position: relative;
   border-radius: 10px;
   box-shadow: 4px 4px 8px #0000001a;
@@ -24,8 +24,12 @@
   table, th, td {
     border: 1px solid black;
     text-align: center;
-    padding: 8px;
+    padding: 20px;
     background-color: white;
+  }
+  i {
+    font-size: 28px;
+    color: rgba(0, 0, 0, 0.7);
   }
 }
 
