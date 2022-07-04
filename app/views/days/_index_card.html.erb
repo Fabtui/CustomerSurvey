@@ -18,8 +18,31 @@
     </div>
   </div>
   <h7><%= day.location %></h7>
-  <% if day.good %>
-    <%= render 'stats_table', day:day %>
+  <% if day.good && !day.good.zero? %>
+    <canvas id="myChart" width="400" max-height="200" data-good="<%= day.good %>" data-middle="<%= day.middle %>" data-bad="<%= day.bad %>" data-total="<%= day.total %>"></canvas>
+
+    <div class="chart-labels">
+            <div class="chart-labels-item">
+              <div class="th-smiley">
+                <%= image_tag 'dislike.png', height: '25', width: '25'  %>
+              </div>
+            </div>
+            <div class="chart-labels-item">
+              <div class="th-smiley">
+                <%= image_tag 'middle.png', height: '25', width: '25'  %>
+              </div>
+            </div>
+            <div class="chart-labels-item">
+              <div class="th-smiley">
+                <%= image_tag 'like.png', height: '25', width: '25'  %>
+              </div>
+            </div>
+          <div class="chart-labels-item">
+            Total
+          </div>
+    </div>
+
+    <%#= render 'stats_table', day:day %>
   <% else %>
     <h6 class='mt-4 text-center'>Aucune donnée pour cet évènement</h6>
   <% end %>
