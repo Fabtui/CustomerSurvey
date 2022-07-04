@@ -9,9 +9,9 @@ const chartJs = () => {
       const middle = ctx.dataset.middle
       const bad = ctx.dataset.bad
       const total = ctx.dataset.total
-      const goodPc = `${Math.round(parseInt(good, 10) * 100) / parseInt(total, 10)}%`
-      const middlePc = `${Math.round(parseInt(middle, 10) * 100) / parseInt(total, 10)}%`
-      const badPc = `${Math.round(parseInt(bad, 10) * 100) / parseInt(total, 10)}%`
+      const goodPc = Math.round((parseInt(good, 10) * 100) / parseInt(total, 10))
+      const middlePc = Math.round((parseInt(middle, 10) * 100) / parseInt(total, 10))
+      const badPc = Math.round((parseInt(bad, 10) * 100) / parseInt(total, 10))
       const myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -32,7 +32,16 @@ const chartJs = () => {
               'rgba(0, 0, 0, 0.8)'
             ],
             borderWidth: 1
-          }]
+          }
+        //   ,
+        //   {
+        //   label: "%",
+        //   type: "line",
+        //   backgroundColor: "rgba(0,0,0,0.2)",
+        //   backgroundColorHover: "#3e95cd",
+        //   data: [badPc,middlePc,goodPc,100]
+        // }
+      ]
         },
       options: {
         }
