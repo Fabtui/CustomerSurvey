@@ -18,7 +18,6 @@ import { cancelSave } from '../components/cancel_save'
 import { previewImageOnFileSelect } from '../components/photo_preview'
 import { navbarButton } from '../components/navbar_button'
 import { offLineSwitch } from '../components/off_line_switch'
-import { changeMenuIcone } from '../components/change_menu_icone'
 import { initSweetalert } from '../components/init_sweet_alert'
 import { initSweetalertMultiDestroy } from '../components/init_sweet_alert_multi_destroy'
 
@@ -43,7 +42,6 @@ document.addEventListener('turbolinks:load', () => {
   previewImageOnFileSelect();
   navbarButton();
   offLineSwitch();
-  changeMenuIcone()
   initSweetalert('#home-link-button', {
     title: "Attention!",
     text: "Vous allez perdre vos données non sauvegardées si vous n'êtes pas connecté à internet, êtes vous sûre?",
