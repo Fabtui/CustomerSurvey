@@ -47,12 +47,18 @@ class FoldersController < ApplicationController
   def destroy
     @folder = Folder.find(params[:id])
     @days = Day.where(folder_id: @folder.id)
-    @days.each do |day|
-      day.folder_id = nil
-      day.save
+    if params[:all] == "true"
+      @days.destroy_all
+      @folder.destroy
+      redirect_to days_path, notice: "Le dossier et ses évènements ont été supprimé"
+    else
+      @days.each do |day|
+        day.folder_id = nil
+        day.save
+      end
+      @folder.destroy
+      redirect_to days_path, notice: "Le dossier a été supprimé"
     end
-    @folder.destroy
-    redirect_to days_path
   end
 
 

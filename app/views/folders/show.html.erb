@@ -12,7 +12,8 @@
         <%= fa_icon "pencil" %>
       <% end %>
       <i class="fa fa-trash folder-delete-button" aria-hidden="true" id='<%= @folder.id %>'></i>
-      <%= link_to "delete", folder_path(@folder.id), class:'hidden', id:"folder-delete-link-#{@folder.id}", method: 'delete' %>
+      <%= link_to "delete", folder_path(@folder.id, all: false), class:'hidden', id:"folder-delete-link-#{@folder.id}", method: 'delete' %>
+      <%= link_to "delete", folder_path(@folder.id, all: true), class:'hidden', id:"folder-delete-link-#{@folder.id}-all", method: 'delete' %>
     </div>
     <% unless @days.count.zero? %>
       <%= link_to folder_path(id: @folder.id, format: :xlsx) do %>

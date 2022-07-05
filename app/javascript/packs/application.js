@@ -20,6 +20,7 @@ import { navbarButton } from '../components/navbar_button'
 import { offLineSwitch } from '../components/off_line_switch'
 import { initSweetalert } from '../components/init_sweet_alert'
 import { initSweetalertMultiDestroy } from '../components/init_sweet_alert_multi_destroy'
+import { initSweetalertMultiDestroyFolder } from '../components/init_sweet_alert_milti_destroy_folder'
 import { chartJs } from '../components/chart'
 import { initSelect2 } from '../components/init_select2';
 
@@ -92,6 +93,6 @@ document.addEventListener('turbolinks:load', () => {
         link.click();
       }
   });
-  initSweetalertMultiDestroy('.folder-delete-button', 'folder', 'ce dossier');
+  initSweetalertMultiDestroyFolder('.folder-delete-button', 'folder', 'ce dossier');
   initSweetalertMultiDestroy('.day-delete-button', 'day', 'cet évènement')
 })
