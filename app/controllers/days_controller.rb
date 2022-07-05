@@ -150,7 +150,7 @@ class DaysController < ApplicationController
       @day.selected = true
     end
     @day.save
-    redirect_to days_path
+    redirect_to request.referrer
   end
 
   private
