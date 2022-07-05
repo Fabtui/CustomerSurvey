@@ -1,8 +1,8 @@
 class DaysController < ApplicationController
   def index
-    @families = Family.all
+    @folders = Folder.all
     @all_days = Day.where(user_id: current_user.id)
-    @days = Day.where(user_id: current_user.id).where(family_id: nil).order(date: :desc)
+    @days = Day.where(user_id: current_user.id).where(folder_id: nil).order(date: :desc)
     @day = Day.new
     respond_to do |format|
       format.html
@@ -57,13 +57,13 @@ class DaysController < ApplicationController
 
   def new
     @day = Day.new
-    @families = Family.all
+    @folders = Folder.all
   end
 
   def create
     @day = Day.new(day_params)
-    if params[:day][:family].present?
-      @day.family_id = params[:day][:family]
+    if params[:day][:folder].present?
+      @day.folder_id = params[:day][:folder]
     end
     @day.user_id = current_user.id
     @day.good = 0
@@ -74,8 +74,8 @@ class DaysController < ApplicationController
     @day.selected = true
     respond_to do |format|
       if @day.save
-        if params[:day][:family].present?
-          format.html { redirect_to family_path(params[:day][:family]), notice: "Votre nouvel évènement a été créé" }
+        if params[:day][:folder].present?
+          format.html { redirect_to folder_path(params[:day][:folder]), notice: "Votre nouvel évènement a été créé" }
         else
           format.html { redirect_to request.referrer, notice: "Votre nouvel évènement a été créé" }
         end
@@ -89,14 +89,14 @@ class DaysController < ApplicationController
 
   def edit
     @day = Day.find(params[:id])
-    @families = Family.all
+    @folders = Folder.all
   end
 
   def update
     @day = Day.find(params[:id])
     @day.update(day_params)
-    if params[:day][:family].present?
-      @day.family_id = params[:day][:family]
+    if params[:day][:folder].present?
+      @day.folder_id = params[:day][:folder]
     end
     @day.save
     redirect_to days_path, notice: "Votre évènement a été édité"
@@ -156,7 +156,7 @@ class DaysController < ApplicationController
   private
 
   def day_params
-    params.require(:day).permit(:name, :location, :tag_line, :date, :family_id)
+    params.require(:day).permit(:name, :location, :tag_line, :date, :folder_id)
   end
 
   def all_days_unselected

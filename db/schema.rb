@@ -50,18 +50,18 @@ ActiveRecord::Schema.define(version: 2022_06_29_163024) do
     t.integer "bad"
     t.integer "total"
     t.string "location"
-    t.bigint "family_id"
+    t.bigint "folder_id"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "tag_line"
     t.boolean "selected"
     t.integer "middle"
-    t.index ["family_id"], name: "index_days_on_family_id"
+    t.index ["folder_id"], name: "index_days_on_folder_id"
     t.index ["user_id"], name: "index_days_on_user_id"
   end
 
-  create_table "families", force: :cascade do |t|
+  create_table "folders", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -81,6 +81,6 @@ ActiveRecord::Schema.define(version: 2022_06_29_163024) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "days", "families"
+  add_foreign_key "days", "folders"
   add_foreign_key "days", "users"
 end

@@ -92,6 +92,6 @@ document.addEventListener('turbolinks:load', () => {
         link.click();
       }
   });
-  initSweetalertMultiDestroy('.family-delete-button', 'family', 'ce dossier');
+  initSweetalertMultiDestroy('.folder-delete-button', 'folder', 'ce dossier');
   initSweetalertMultiDestroy('.day-delete-button', 'day', 'cet évènement')
 })

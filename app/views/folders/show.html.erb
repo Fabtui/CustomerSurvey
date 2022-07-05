@@ -5,14 +5,14 @@
     <% end %>
   </div>
 
-  <h2 class="text-center days-title"><%= @family.name %></h2>
+  <h2 class="days__title"><%= image_tag 'folder.png', width:"35px", height:"25px" %> <%= @folder.name.capitalize %></h2>
   <div class="download-link-container">
-    <div class="family__edit__links">
-      <%= link_to edit_family_path(@family.id) do %>
+    <div class="folder__edit__links">
+      <%= link_to edit_folder_path(@folder.id) do %>
         <%= fa_icon "pencil" %>
       <% end %>
-      <i class="fa fa-trash family-delete-button" aria-hidden="true" id='<%= @family.id %>'></i>
-      <%= link_to "delete", family_path(@family.id), class:'hidden', id:"family-delete-link-#{@family.id}", method: 'delete' %>
+      <i class="fa fa-trash folder-delete-button" aria-hidden="true" id='<%= @folder.id %>'></i>
+      <%= link_to "delete", folder_path(@folder.id), class:'hidden', id:"folder-delete-link-#{@folder.id}", method: 'delete' %>
     </div>
     <% unless @days.count.zero? %>
       <%= link_to days_path(format: :xlsx) do %>
@@ -38,7 +38,7 @@
   </div>
   <div class="index-new-modal">
     <div id="new-modal" class="hidden mt-4">
-      <%= render "days/new", family:@family %>
+      <%= render "days/new", folder:@folder %>
     </div>
   </div>
 </div>
