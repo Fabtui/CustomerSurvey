@@ -27,7 +27,9 @@
     <% if controller_name == 'folders' && action_name == 'show' %>
       <%= f.input :folder, :as => :hidden, :input_html => { :value => folder.id } %>
     <% else %>
-      <%= f.input :folder, :collection => @folders, :value_method => :id, :label => "Dossier" ,:include_blank => true %>
+      <% if @folders && !@folders.count.zero? %>
+        <%= f.input :folder, :collection => @folders, :value_method => :id, :label => "Dossier" ,:include_blank => true %>
+      <% end %>
     <% end %>
   </div>
 
