@@ -1,5 +1,5 @@
-<%= simple_form_for(@day, as: :day, method: :post, url: days_path) do |f| %>
-  <div id="new-day-form" class="form-inputs">
+<%= simple_form_for(@event, as: :event, method: :post, url: events_path) do |f| %>
+  <div id="new-event-form" class="form-inputs">
     <%= f.input :name,
                 label: 'Nom',
                 required: true,
@@ -22,12 +22,19 @@
                 placeholder: 'ex: Avez vous apprécier notre présentation?',
                 required: false,
                 autofocus: true,
-                hint: "Titre affiché au dessus du vote",
+                hint: "Titre affiché au dessus du vote (par défault: 'Donnez nous votre avis!')",
                 input_html: { autocomplete: "tag_line" } %>
+    <% if controller_name == 'folders' && action_name == 'show' %>
+      <%= f.input :folder, :as => :hidden, :input_html => { :value => folder.id } %>
+    <% else %>
+      <% if @folders && !@folders.count.zero? %>
+        <%= f.input :folder, :collection => @folders, :value_method => :id, :label => "Dossier" ,:include_blank => true %>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Annuler", class:'btn btn-danger' %>
-    <%= f.button :submit, "Enregistrer", class:'btn btn-primary' %>
+    <%= f.button :submit, "Annuler", class:'btn btn-danger', id:"cancel-new-event" %>
+    <%= f.button :submit, "Enregistrer", class:'btn btn-primary', id:"save-new-event" %>
   </div>
 <% end %>

@@ -1,8 +1,8 @@
 class FoldersController < ApplicationController
   def show
     @folder = Folder.find(params[:id])
-    @days = @folder.days
-    @day = Day.new
+    @events = @folder.events
+    @event = Event.new
     respond_to do |format|
       format.html
       format.xlsx {
@@ -13,24 +13,24 @@ class FoldersController < ApplicationController
 
   def new
     @folder = Folder.new
-    @days = Day.where(user_id: current_user.id).where(folder_id: nil).order(date: :desc)
+    @events = Event.where(user_id: current_user.id).where(folder_id: nil).order(date: :desc)
   end
 
   def create
     @folder = Folder.new(folder_params)
     @folder.user_id = current_user.id
     if @folder.save
-      params[:folder][:days].delete_if(&:empty?)
-      unless params[:folder][:days].empty?
-        params[:folder][:days].each do |day_id|
-          day = Day.find(day_id.to_i)
-          day.folder_id = @folder.id
-          day.save
+      params[:folder][:events].delete_if(&:empty?)
+      unless params[:folder][:events].empty?
+        params[:folder][:events].each do |event_id|
+          event = Event.find(event_id.to_i)
+          event.folder_id = @folder.id
+          event.save
         end
       end
-      redirect_to days_path, notice: "Nouveau dossier créé"
+      redirect_to events_path, notice: "Nouveau dossier créé"
     else
-      redirect_to days_path, alert: "Le nouveau dossier n'a pu être créé"
+      redirect_to events_path, alert: "Le nouveau dossier n'a pu être créé"
     end
   end
 
@@ -46,18 +46,18 @@ class FoldersController < ApplicationController
 
   def destroy
     @folder = Folder.find(params[:id])
-    @days = Day.where(folder_id: @folder.id)
+    @events = Event.where(folder_id: @folder.id)
     if params[:all] == "true"
-      @days.destroy_all
+      @events.destroy_all
       @folder.destroy
-      redirect_to days_path, notice: "Le dossier et ses évènements ont été supprimé"
+      redirect_to events_path, notice: "Le dossier et ses évènements ont été supprimé"
     else
-      @days.each do |day|
-        day.folder_id = nil
-        day.save
+      @events.each do |event|
+        event.folder_id = nil
+        event.save
       end
       @folder.destroy
-      redirect_to days_path, notice: "Le dossier a été supprimé"
+      redirect_to events_path, notice: "Le dossier a été supprimé"
     end
   end
 

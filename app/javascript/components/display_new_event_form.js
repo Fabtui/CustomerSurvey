@@ -1,7 +1,7 @@
 const displayNewForm = () => {
-  const newDayButton = document.querySelector('#new-day-button');
+  const newEventButton = document.querySelector('#new-event-button');
 
-  if (newDayButton) {
+  if (newEventButton) {
 
     const toggleHidden = () => {
       return new Promise((resolve, reject) => {
@@ -37,12 +37,12 @@ const displayNewForm = () => {
       })
     }
 
-    newDayButton.addEventListener('click', (e) => {
+    newEventButton.addEventListener('click', (e) => {
       e.preventDefault();
       toggleAndThenScroll();
     })
 
-    const cancelButton = document.querySelector('#cancel-new-day')
+    const cancelButton = document.querySelector('#cancel-new-event')
     cancelButton.addEventListener('click', (e) => {
       e.preventDefault();
       toggleHidden();

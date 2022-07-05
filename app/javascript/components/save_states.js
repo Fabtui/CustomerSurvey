@@ -3,7 +3,7 @@ import { csrfToken } from "@rails/ujs"
 const saveStates = () => {
   const saveButton = document.querySelector('#save-submit-button');
   if (saveButton) {
-    const daySelector = document.querySelector('#save-day-select');
+    const eventSelector = document.querySelector('#save-event-select');
     const replaceRadioButton = document.querySelector('#replace-radio-button');
     const saveContainer = document.querySelector('.save-container')
     const homeContainer = document.querySelector('.home-container')
@@ -17,7 +17,7 @@ const saveStates = () => {
     }
 
     saveButton.addEventListener('click', () => {
-      const dayId = daySelector.value;
+      const eventId = eventSelector.value;
       const replaceValue = replaceRadioButton.checked
       // const params = {
       //     good: localStorage.getItem('like'),
@@ -28,7 +28,7 @@ const saveStates = () => {
           // headers: { "Accept": "application/json", "X-CSRF-Token": csrfToken() },
           // body: JSON.stringify( params )
       };
-      fetch( `/days/${dayId}/save?good=${localStorage.getItem('like')}&middle=${localStorage.getItem('middle')}&bad=${localStorage.getItem('dislike')}&replace=${replaceValue}`, options )
+      fetch( `/events/${eventId}/save?good=${localStorage.getItem('like')}&middle=${localStorage.getItem('middle')}&bad=${localStorage.getItem('dislike')}&replace=${replaceValue}`, options )
           .then( response => response.json() )
           .then( response => {
             if (response) {

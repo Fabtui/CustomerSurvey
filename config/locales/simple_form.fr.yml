@@ -21,7 +21,7 @@ fr:
           suspend: Empêcher toute interaction depuis ou vers ce compte et supprimer son contenu. Réversible dans les 30 jours.
         warning_preset_id: Optionnel. Vous pouvez toujours ajouter un texte personnalisé à la fin de la présélection
       announcement:
-        all_day: Si coché, seules les dates de l’intervalle de temps seront affichées
+        all_event: Si coché, seules les dates de l’intervalle de temps seront affichées
         ends_at: Optionnel. L’annonce sera automatiquement dépubliée à ce moment
         scheduled_at: Laisser vide pour publier l’annonce immédiatement
         starts_at: Optionnel. Si votre annonce est liée à une période spécifique
@@ -115,7 +115,7 @@ fr:
           suspend: Suspendre et supprimer les données du compte de manière irréversible
         warning_preset_id: Utiliser un modèle d’avertissement
       announcement:
-        all_day: Événement de toute la journée
+        all_event: Événement de toute la journée
         ends_at: Fin de l’événement
         scheduled_at: Planifier la publication
         starts_at: Début de l’événement

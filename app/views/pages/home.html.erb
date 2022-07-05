@@ -1,11 +1,11 @@
 <div class="container home-container">
-  <% if @selected_day.empty? %>
+  <% if @selected_event.empty? %>
     <h3 class='text-center mt-4'>Donnez nous votre avis!</h3>
   <% else %>
-    <% if @selected_day.first.tag_line.empty? %>
+    <% if @selected_event.first.tag_line.empty? %>
       <h3 class='text-center mt-4'>Donnez nous votre avis!</h3>
     <% else %>
-      <h3 class='text-center mt-4'><%= @selected_day.first.tag_line %></h3>
+      <h3 class='text-center mt-4'><%= @selected_event.first.tag_line %></h3>
     <% end %>
   <% end %>
 
@@ -23,5 +23,5 @@
     </div>
   </div>
 </div>
-<%= render 'save_modal', days:@days %>
+<%= render 'save_modal', events:@events %>
 <%= render 'total_modal' %>

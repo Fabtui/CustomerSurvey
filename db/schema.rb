@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_29_163024) do
+ActiveRecord::Schema.define(version: 2022_06_27_080711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,22 +43,22 @@ ActiveRecord::Schema.define(version: 2022_06_29_163024) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "days", force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
     t.date "date"
     t.string "name"
     t.integer "good"
+    t.integer "middle"
     t.integer "bad"
     t.integer "total"
+    t.boolean "selected"
+    t.string "tag_line"
     t.string "location"
     t.bigint "folder_id"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "tag_line"
-    t.boolean "selected"
-    t.integer "middle"
-    t.index ["folder_id"], name: "index_days_on_folder_id"
-    t.index ["user_id"], name: "index_days_on_user_id"
+    t.index ["folder_id"], name: "index_events_on_folder_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "folders", force: :cascade do |t|
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2022_06_29_163024) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "days", "folders"
-  add_foreign_key "days", "users"
+  add_foreign_key "events", "folders"
+  add_foreign_key "events", "users"
   add_foreign_key "folders", "users"
 end

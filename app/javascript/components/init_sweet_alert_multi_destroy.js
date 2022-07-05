@@ -25,7 +25,7 @@ const initSweetalertMultiDestroy = (selector = () => {}, name, sentence) => {
 }
   //     const callback = (id) => {
   //       , (value) => {
-  //     const link = document.querySelector('#day-delete-link');
+  //     const link = document.querySelector('#event-delete-link');
   //     if (value) {
   //       console.log(value);
   //       link.click();

@@ -14,7 +14,7 @@ fr:
           has_many: Vous ne pouvez pas supprimer l'enregistrement parce que les %{record}
             dépendants existent
   date:
-    abbr_day_names:
+    abbr_event_names:
     - dim
     - lun
     - mar
@@ -36,7 +36,7 @@ fr:
     - oct.
     - nov.
     - déc.
-    day_names:
+    event_names:
     - Dimanche
     - Lundi
     - Mardi
@@ -64,7 +64,7 @@ fr:
     - Novembre
     - Décembre
     order:
-    - :day
+    - :event
     - :month
     - :year
   datetime:
@@ -99,7 +99,7 @@ fr:
       x_minutes:
         one: 1 minute
         other: "%{count} minutes"
-      x_days:
+      x_events:
         one: 1 jour
         other: "%{count} jours"
       x_months:
@@ -112,7 +112,7 @@ fr:
       second: Seconde
       minute: Minute
       hour: Heure
-      day: Jour
+      event: Jour
       month: Mois
       year: Année
   errors:

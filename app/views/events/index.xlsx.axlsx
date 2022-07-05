@@ -14,16 +14,16 @@ wb.styles do |style|
 
     count = 3
 
-    @days.each do |day|
+    @events.each do |event|
       count += 1
-      unless day.total.zero?
-        satisfaction = "#{((((day.middle.to_f / 2) + (day.good))*100).to_f / day.total).round(2)}%"
-        good_pc = ((day.good * 100) / day.total).to_s + "%"
-        middle_pc = ((day.middle * 100) / day.total).to_s + "%"
-        bad_pc = ((day.bad * 100) / day.total).to_s + "%"
+      unless event.total.zero?
+        satisfaction = "#{((((event.middle.to_f / 2) + (event.good))*100).to_f / event.total).round(2)}%"
+        good_pc = ((event.good * 100) / event.total).to_s + "%"
+        middle_pc = ((event.middle * 100) / event.total).to_s + "%"
+        bad_pc = ((event.bad * 100) / event.total).to_s + "%"
         total_pc = "100%"
       end
-      sheet.add_row [day.date.strftime('%d/%m/%Y'), day.name, day.location, day.bad, day.middle, day.good, day.total, bad_pc, middle_pc, good_pc, total_pc, satisfaction ]
+      sheet.add_row [event.date.strftime('%d/%m/%Y'), event.name, event.location, event.bad, event.middle, event.good, event.total, bad_pc, middle_pc, good_pc, total_pc, satisfaction ]
       sheet.add_style ["A#{count}:L#{count}"], centered
       sheet.add_border ["A#{count}:A#{count}","B#{count}:B#{count}","C#{count}:C#{count}","D#{count}:D#{count}","E#{count}:E#{count}","F#{count}:F#{count}","G#{count}:G#{count}","H#{count}:H#{count}","I#{count}:I#{count}","J#{count}:J#{count}","K#{count}:K#{count}","L#{count}:L#{count}"]
     end
