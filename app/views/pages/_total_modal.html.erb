@@ -1,41 +1,29 @@
 <div class="total-container">
   <div class="total-container-content">
-    <div class="total-container-items">
-      <table>
-        <tr>
-          <th>
-            <div class="th-total-smiley">
-              <%= image_tag 'dislike.png', height: '50', width: '50'  %>
-            </div>
-          </th>
-          <th>
-            <div class="th-total-smiley">
-              <%= image_tag 'middle.png', height: '50', width: '50'  %>
-            </div>
-          </th>
-          <th>
-            <div class="th-total-smiley">
-              <%= image_tag 'like.png', height: '50', width: '50'  %>
-            </div>
-          </th>
-          <th>Total</th>
-        </tr>
-        <tr>
-          <td id="dislike-td">1</td>
-          <td id="middle-td">1</td>
-          <td id="like-td">1</td>
-          <td id="total-td">2</td>
-        </tr>
-        <tr>
-          <td id="dislike-stats-td">0</td>
-          <td id="middle-stats-td">0</td>
-          <td id="like-stats-td">0</td>
-          <td id="total-stats-td">100%</td>
-        </tr>
-      </table>
-      <div class="close-button">
-        <i class="fa fa-times" aria-hidden="true"></i>
+    <canvas id="myChartHome" min-width="600" min-height="400"></canvas>
+
+    <div class="chart-labels">
+      <div class="chart-labels-item">
+        <div class="th-smiley">
+          <%= image_tag 'dislike.png', height: '25', width: '25'  %>
+        </div>
       </div>
+      <div class="chart-labels-item">
+        <div class="th-smiley">
+          <%= image_tag 'middle.png', height: '25', width: '25'  %>
+        </div>
+      </div>
+      <div class="chart-labels-item">
+        <div class="th-smiley">
+          <%= image_tag 'like.png', height: '25', width: '25'  %>
+        </div>
+      </div>
+      <div class="chart-labels-item">
+        Total
+      </div>
+    </div>
+    <div class="close-button">
+      <i class="fa fa-times" aria-hidden="true"></i>
     </div>
   </div>
 </div>
