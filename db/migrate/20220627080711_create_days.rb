@@ -7,6 +7,7 @@ class CreateDays < ActiveRecord::Migration[6.1]
       t.integer :bad
       t.integer :total
       t.string :location
+      t.references :family, null: true, foreign_key: true
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

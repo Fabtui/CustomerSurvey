@@ -1,6 +1,8 @@
 class DaysController < ApplicationController
   def index
-    @days = Day.where(user_id: current_user.id).order(date: :desc)
+    @families = Family.all
+    @all_days = Day.where(user_id: current_user.id)
+    @days = Day.where(user_id: current_user.id).where(family_id: nil).order(date: :desc)
     @day = Day.new
     respond_to do |format|
       format.html
@@ -33,7 +35,7 @@ class DaysController < ApplicationController
         pdf.text " "
         pdf.text "Résultats :", size: 16
         pdf.text " "
-        if @day.good.present?
+        unless @day.total.zero?
           pdf.text "Mauvais: #{@day.bad}       (#{(@day.bad * 100) / @day.total} %)", size: 16
           pdf.text "Moyen: #{@day.middle}          (#{(@day.middle * 100) / @day.total} %)", size: 16
           pdf.text "Bon: #{@day.good}              (#{(@day.good * 100) / @day.total} %)", size: 16
@@ -55,10 +57,14 @@ class DaysController < ApplicationController
 
   def new
     @day = Day.new
+    @families = Family.all
   end
 
   def create
     @day = Day.new(day_params)
+    if params[:day][:family].present?
+      @day.family_id = params[:day][:family]
+    end
     @day.user_id = current_user.id
     @day.good = 0
     @day.bad = 0
@@ -68,10 +74,14 @@ class DaysController < ApplicationController
     @day.selected = true
     respond_to do |format|
       if @day.save
-        format.html { redirect_to days_path, notice: "Votre nouvel évènement a été créé" }
+        if params[:day][:family].present?
+          format.html { redirect_to family_path(params[:day][:family]), notice: "Votre nouvel évènement a été créé" }
+        else
+          format.html { redirect_to request.referrer, notice: "Votre nouvel évènement a été créé" }
+        end
         format.json # Follow the classic Rails flow and look for a create.json view
       else
-        format.html { redirect_to days_path, alert: "Une erreur s'est produite, la nouvel évènement n'a pu être créé" }
+        format.html { redirect_to request.referrer, alert: "Une erreur s'est produite, la nouvel évènement n'a pu être créé" }
         format.json # Follow the classic Rails flow and look for a create.json view
       end
     end
@@ -79,11 +89,16 @@ class DaysController < ApplicationController
 
   def edit
     @day = Day.find(params[:id])
+    @families = Family.all
   end
 
   def update
     @day = Day.find(params[:id])
     @day.update(day_params)
+    if params[:day][:family].present?
+      @day.family_id = params[:day][:family]
+    end
+    @day.save
     redirect_to days_path, notice: "Votre évènement a été édité"
 
     # @day = Day.new
@@ -104,7 +119,7 @@ class DaysController < ApplicationController
   def destroy
     @day = Day.find(params[:id])
     @day.destroy
-    redirect_to days_path
+    redirect_to request.referrer, notice: "L'évènement a été supprimé"
   end
 
   def save
@@ -141,7 +156,7 @@ class DaysController < ApplicationController
   private
 
   def day_params
-    params.require(:day).permit(:name, :location, :tag_line, :date)
+    params.require(:day).permit(:name, :location, :tag_line, :date, :family_id)
   end
 
   def all_days_unselected

@@ -18,7 +18,7 @@
     </div>
   </div>
   <h7><%= day.location %></h7>
-  <% if day.good && !day.good.zero? %>
+  <% if day.total && !day.total.zero? %>
     <canvas id="myChart" width="400" max-height="200" data-good="<%= day.good %>" data-middle="<%= day.middle %>" data-bad="<%= day.bad %>" data-total="<%= day.total %>"></canvas>
 
     <div class="chart-labels">

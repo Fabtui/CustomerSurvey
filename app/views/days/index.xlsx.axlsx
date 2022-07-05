@@ -16,7 +16,7 @@ wb.styles do |style|
 
     @days.each do |day|
       count += 1
-      if day.good
+      unless day.total.zero?
         satisfaction = "#{((((day.middle.to_f / 2) + (day.good))*100).to_f / day.total).round(2)}%"
         good_pc = ((day.good * 100) / day.total).to_s + "%"
         middle_pc = ((day.middle * 100) / day.total).to_s + "%"

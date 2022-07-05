@@ -46,17 +46,25 @@ ActiveRecord::Schema.define(version: 2022_06_29_163024) do
   create_table "days", force: :cascade do |t|
     t.date "date"
     t.string "name"
-    t.integer "good", default: 0
-    t.integer "bad", default: 0
-    t.integer "total", default: 0
+    t.integer "good"
+    t.integer "bad"
+    t.integer "total"
     t.string "location"
+    t.bigint "family_id"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "tag_line"
     t.boolean "selected"
-    t.integer "middle", default: 0
+    t.integer "middle"
+    t.index ["family_id"], name: "index_days_on_family_id"
     t.index ["user_id"], name: "index_days_on_user_id"
+  end
+
+  create_table "families", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,5 +81,6 @@ ActiveRecord::Schema.define(version: 2022_06_29_163024) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "days", "families"
   add_foreign_key "days", "users"
 end
