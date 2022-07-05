@@ -95,6 +95,7 @@
 .folders__container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   padding: 32px 0;
   a {
     color: black;
@@ -104,9 +105,8 @@
 }
 
 .folders__item {
-  margin-right: 32px;
   margin-bottom: 32px;
-  h5 {
+  h6 {
     margin-top: 12px;
   }
 }

@@ -24,6 +24,11 @@
                 autofocus: true,
                 hint: "Titre affiché au dessus du vote (par défault: 'Donnez nous votre avis!')",
                 input_html: { autocomplete: "tag_line" } %>
+    <% if controller_name == 'families' && action_name == 'show' %>
+      <%= f.input :family, :as => :hidden, :input_html => { :value => family.id } %>
+    <% else %>
+      <%= f.input :family, :collection => @families, :value_method => :id, :label => "Dossier" ,:include_blank => true %>
+    <% end %>
   </div>
 
   <div class="form-actions">

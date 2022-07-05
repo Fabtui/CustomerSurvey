@@ -7,7 +7,12 @@
 
   <h2 class="text-center days-title"><%= @family.name %></h2>
   <div class="download-link-container">
-    <div class="empty__div">
+    <div class="family__edit__links">
+      <%= link_to edit_family_path(@family.id) do %>
+        <%= fa_icon "pencil" %>
+      <% end %>
+      <i class="fa fa-trash family-delete-button" aria-hidden="true" id='<%= @family.id %>'></i>
+      <%= link_to "delete", family_path(@family.id), class:'hidden', id:"family-delete-link-#{@family.id}", method: 'delete' %>
     </div>
     <% unless @days.count.zero? %>
       <%= link_to days_path(format: :xlsx) do %>
@@ -33,7 +38,7 @@
   </div>
   <div class="index-new-modal">
     <div id="new-modal" class="hidden mt-4">
-      <%= render "days/new" %>
+      <%= render "days/new", family:@family %>
     </div>
   </div>
 </div>

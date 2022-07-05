@@ -57,10 +57,14 @@ class DaysController < ApplicationController
 
   def new
     @day = Day.new
+    @families = Family.all
   end
 
   def create
     @day = Day.new(day_params)
+    if params[:day][:family].present?
+      @day.family_id = params[:day][:family]
+    end
     @day.user_id = current_user.id
     @day.good = 0
     @day.bad = 0
@@ -81,11 +85,16 @@ class DaysController < ApplicationController
 
   def edit
     @day = Day.find(params[:id])
+    @families = Family.all
   end
 
   def update
     @day = Day.find(params[:id])
     @day.update(day_params)
+    if params[:day][:family].present?
+      @day.family_id = params[:day][:family]
+    end
+    @day.save
     redirect_to days_path, notice: "Votre évènement a été édité"
 
     # @day = Day.new
