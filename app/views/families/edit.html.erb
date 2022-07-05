@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="back-link">
+    <%= link_to :back do %>
+      <i class="fa fa-arrow-left"></i>
+    <% end %>
+  </div>
+  <h2 class="text-center days-title">Editer le dossier</h2>
+  <%= simple_form_for(@family) do |f| %>
+    <div id="new-day-form" class="form-inputs">
+      <%= f.input :name,
+                  label: 'Nom',
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "name" } %>
+    </div>
+    <div class="form-actions">
+      <%= link_to "Annuler", family_path(@family.id), class:'btn btn-danger' %>
+      <%= f.button :submit, "Enregistrer", class:'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

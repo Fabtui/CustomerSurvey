@@ -43,6 +43,7 @@
 .download-link-container {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 24px;
   a {
     color: black;
   }
@@ -86,6 +87,7 @@
 
 .days-title {
   font-weight: 400;
+  margin-bottom: 24px;
 }
 
 .stat-header-left i {
@@ -95,7 +97,7 @@
 .folders__container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 32px 0;
   a {
     color: black;
@@ -107,6 +109,10 @@
 .folders__item {
   margin-bottom: 32px;
   h6 {
+    max-width: 160px;
     margin-top: 12px;
+  }
+  img {
+    box-shadow: 0 10px 10px -10px #0000005c;
   }
 }

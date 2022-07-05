@@ -74,10 +74,14 @@ class DaysController < ApplicationController
     @day.selected = true
     respond_to do |format|
       if @day.save
-        format.html { redirect_to days_path, notice: "Votre nouvel évènement a été créé" }
+        if params[:day][:family].present?
+          format.html { redirect_to family_path(params[:day][:family]), notice: "Votre nouvel évènement a été créé" }
+        else
+          format.html { redirect_to request.referrer, notice: "Votre nouvel évènement a été créé" }
+        end
         format.json # Follow the classic Rails flow and look for a create.json view
       else
-        format.html { redirect_to days_path, alert: "Une erreur s'est produite, la nouvel évènement n'a pu être créé" }
+        format.html { redirect_to request.referrer, alert: "Une erreur s'est produite, la nouvel évènement n'a pu être créé" }
         format.json # Follow the classic Rails flow and look for a create.json view
       end
     end
@@ -115,7 +119,7 @@ class DaysController < ApplicationController
   def destroy
     @day = Day.find(params[:id])
     @day.destroy
-    redirect_to days_path
+    redirect_to request.referrer, notice: "L'évènement a été supprimé"
   end
 
   def save
@@ -152,7 +156,7 @@ class DaysController < ApplicationController
   private
 
   def day_params
-    params.require(:day).permit(:name, :location, :tag_line, :date)
+    params.require(:day).permit(:name, :location, :tag_line, :date, :family_id)
   end
 
   def all_days_unselected
