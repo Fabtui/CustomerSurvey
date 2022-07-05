@@ -44,12 +44,12 @@ ActiveRecord::Schema.define(version: 2022_06_29_163024) do
   end
 
   create_table "days", force: :cascade do |t|
-    t.date "date"
-    t.string "name"
+    t.date "date", null: false
+    t.string "name", null: false
     t.integer "good"
     t.integer "bad"
     t.integer "total"
-    t.string "location"
+    t.string "location", null: false
     t.bigint "folder_id"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2022_06_29_163024) do
   end
 
   create_table "folders", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

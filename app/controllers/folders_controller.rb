@@ -13,16 +13,19 @@ class FoldersController < ApplicationController
 
   def new
     @folder = Folder.new
-    @days = Day.all
+    @days = Day.where(user_id: current_user.id).where(folder_id: nil).order(date: :desc)
   end
 
   def create
     @folder = Folder.new(folder_params)
     if @folder.save
-      if params[:folder][:days].present?
-        day = Day.find(params[:folder][:days])
-        day.folder_id = @folder.id
-        day.save
+      params[:folder][:days].delete_if(&:empty?)
+      unless params[:folder][:days].empty?
+        params[:folder][:days].each do |day_id|
+          day = Day.find(day_id.to_i)
+          day.folder_id = @folder.id
+          day.save
+        end
       end
       redirect_to days_path, notice: "Nouveau dossier créé"
     else
