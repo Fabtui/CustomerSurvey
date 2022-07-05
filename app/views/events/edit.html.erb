@@ -11,9 +11,9 @@
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "location" } %>
-      <%= f.input :date, as: :date, start_year: Date.toevent.year,
-                  end_year: Date.toevent.year - 2,
-                  order: [:event, :month, :year],
+      <%= f.input :date, as: :date, start_year: Date.today.year,
+                  end_year: Date.today.year - 2,
+                  order: [:day, :month, :year],
                   label: 'Date',
                   required: true,
                   autofocus: true,
