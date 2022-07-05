@@ -12,7 +12,10 @@
 
   <div class="download-link-container">
     <%= link_to new_folder_path do %>
-    <%= fa_icon "folder" %>
+    <div class="new__folder__icon">
+      <%= fa_icon "folder" %>
+      <h5>+</h5>
+    </div>
     <% end %>
     <% unless @events.count.zero? %>
       <%= link_to events_path(format: :xlsx) do %>
