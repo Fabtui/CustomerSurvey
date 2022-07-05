@@ -148,3 +148,20 @@
     margin: 0;
   }
 }
+
+.event__chart__container {
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.fold__container {
+  height: 0;
+}
+
+.event__chart__content {
+  transition: all 0.3s;
+}
+
+.fold__content {
+  transform: translateY(-240px);
+}

@@ -24,6 +24,7 @@ import { initSweetalertMultiDestroyFolder } from '../components/init_sweet_alert
 import { chartJs } from '../components/chart'
 import { chartHomeJs } from '../components/chart_home'
 import { initSelect2 } from '../components/init_select2';
+import { unfoldEventCard } from '../components/unfold_event_card'
 
 Rails.start()
 Turbolinks.start()
@@ -47,6 +48,7 @@ document.addEventListener('turbolinks:load', () => {
   chartJs()
   chartHomeJs()
   initSelect2()
+  unfoldEventCard()
   initSweetalert('#home-link-button', {
     title: "Attention!",
     text: "Vous allez perdre vos données non sauvegardées si vous n'êtes pas connecté à internet, êtes vous sûre?",
