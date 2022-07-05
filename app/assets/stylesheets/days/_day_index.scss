@@ -107,6 +107,7 @@
 }
 
 .folders__item {
+  position: relative;
   margin-bottom: 32px;
   h6 {
     max-width: 160px;
@@ -115,4 +116,11 @@
   img {
     box-shadow: 0 10px 10px -10px #0000005c;
   }
+}
+
+.folder__mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: start;
 }
