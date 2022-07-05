@@ -43,7 +43,7 @@ document.addEventListener('turbolinks:load', () => {
   navbarButton();
   offLineSwitch();
   chartJs()
-  // initSelect2()
+  initSelect2()
   initSweetalert('#home-link-button', {
     title: "Attention!",
     text: "Vous allez perdre vos données non sauvegardées si vous n'êtes pas connecté à internet, êtes vous sûre?",
