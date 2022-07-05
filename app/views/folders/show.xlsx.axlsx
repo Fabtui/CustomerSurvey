@@ -1,0 +1,31 @@
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376")
+  wb.add_worksheet(name: "Evenements") do |sheet|
+    sheet.add_row ['Customer Satisfaction Survey']
+    sheet.add_row ['']
+    sheet.add_row ['Date','Nom','Lieu','Mauvais','Moyen','Bon','Total','Mauvais%','Moyen%','Bon%','Total%', 'Satisfaction']
+    bold     = { b: true }
+    centered = { alignment: { horizontal: :center } }
+    size = { sz: 11 }
+    background_color = { bg_color: 'e0e0e0' }
+    sheet.add_style ['A3:L3'], bold, centered, size, background_color
+    sheet.add_border ['A3:A3','B3:B3','C3:C3','D3:D3','E3:E3','F3:F3','G3:G3','H3:H3','I3:I3','J3:J3','K3:K3','L3:L3']
+
+    count = 3
+
+    @days.each do |day|
+      count += 1
+      unless day.total.zero?
+        satisfaction = "#{((((day.middle.to_f / 2) + (day.good))*100).to_f / day.total).round(2)}%"
+        good_pc = ((day.good * 100) / day.total).to_s + "%"
+        middle_pc = ((day.middle * 100) / day.total).to_s + "%"
+        bad_pc = ((day.bad * 100) / day.total).to_s + "%"
+        total_pc = "100%"
+      end
+      sheet.add_row [day.date.strftime('%d/%m/%Y'), day.name, day.location, day.bad, day.middle, day.good, day.total, bad_pc, middle_pc, good_pc, total_pc, satisfaction ]
+      sheet.add_style ["A#{count}:L#{count}"], centered
+      sheet.add_border ["A#{count}:A#{count}","B#{count}:B#{count}","C#{count}:C#{count}","D#{count}:D#{count}","E#{count}:E#{count}","F#{count}:F#{count}","G#{count}:G#{count}","H#{count}:H#{count}","I#{count}:I#{count}","J#{count}:J#{count}","K#{count}:K#{count}","L#{count}:L#{count}"]
+    end
+  end
+end

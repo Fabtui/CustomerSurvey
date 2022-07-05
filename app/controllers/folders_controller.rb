@@ -3,6 +3,12 @@ class FoldersController < ApplicationController
     @folder = Folder.find(params[:id])
     @days = @folder.days
     @day = Day.new
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="Evenements_CustomerSurvey.xlsx"'
+      }
+    end
   end
 
   def new
