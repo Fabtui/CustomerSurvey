@@ -1,6 +1,6 @@
 class DaysController < ApplicationController
   def index
-    @folders = Folder.all
+    @folders = Folder.where(user_id: current_user.id)
     @all_days = Day.where(user_id: current_user.id)
     @days = Day.where(user_id: current_user.id).where(folder_id: nil).order(date: :desc)
     @day = Day.new
@@ -57,7 +57,7 @@ class DaysController < ApplicationController
 
   def new
     @day = Day.new
-    @folders = Folder.all
+    @folders = Folder.where(user_id: current_user.id)
   end
 
   def create
@@ -89,7 +89,7 @@ class DaysController < ApplicationController
 
   def edit
     @day = Day.find(params[:id])
-    @folders = Folder.all
+    @folders = Folder.where(user_id: current_user.id)
   end
 
   def update
