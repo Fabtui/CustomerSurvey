@@ -1,4 +1,4 @@
-if @day.persisted?
+if @event.persisted?
   json.form json.partial!("shared/save_confirm.html.erb")
   json.inserted_item json.call("pages/home.html.erb")
 else

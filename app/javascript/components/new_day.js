@@ -1,19 +1,19 @@
 import { csrfToken } from "@rails/ujs"
 
-const newDay = () => {
+const newEvent = () => {
   const saveContainer = document.querySelector('.save-container')
   if (saveContainer) {
-    const saveButton = document.querySelector('#save-new-day')
-    const newForm = document.querySelector('#new_day')
+    const saveButton = document.querySelector('#save-new-event')
+    const newForm = document.querySelector('#new_event')
 
     const container = document.querySelector('.container')
     const display = (data) => {
       container.insertAdjacentHTML('beforeend', data)
     }
 
-    const formSelector = document.querySelector('#save-day-select')
+    const formSelector = document.querySelector('#save-event-select')
     const insert = (id, name, date) => {
-      const data = `<option class="days-item" value="${id}">${date} - ${name}</option>'`
+      const data = `<option class="events-item" value="${id}">${date} - ${name}</option>'`
       formSelector.insertAdjacentHTML('afterbegin', data)
     }
 
@@ -40,4 +40,4 @@ const newDay = () => {
   };
 }
 
-export { newDay };
+export { newEvent };

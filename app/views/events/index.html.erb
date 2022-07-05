@@ -1,6 +1,6 @@
-<div class="container days-container">
+<div class="container events-container">
   <%= render 'shared/back_link' %>
-  <h2 class="text-center days-title">Evènements</h2>
+  <h2 class="text-center events-title">Evènements</h2>
 
   <% unless @folders.count.zero? %>
     <div class="folders__container">
@@ -14,22 +14,22 @@
     <%= link_to new_folder_path do %>
     <%= fa_icon "folder" %>
     <% end %>
-    <% unless @days.count.zero? %>
-      <%= link_to days_path(format: :xlsx) do %>
+    <% unless @events.count.zero? %>
+      <%= link_to events_path(format: :xlsx) do %>
         <%= fa_icon "file-excel-o" %>
       <% end %>
     <% end %>
   </div>
 
-  <% if @all_days.count.zero? %>
+  <% if @all_events.count.zero? %>
     <h6 class="text-center mt-4 mb-4">Aucun évenement créé</h6>
   <% else %>
-    <% @days.each do |day| %>
-      <%= render "index_card", day:day %>
+    <% @events.each do |event| %>
+      <%= render "index_card", event:event %>
     <% end %>
   <% end %>
-  <div class="new-day-button-container">
-    <div class="btn btn-success mt-4", id="new-day-button">
+  <div class="new-event-button-container">
+    <div class="btn btn-success mt-4", id="new-event-button">
       Créer un nouvel évènement
     </div>
     <%# <div class="arrow-down hide-arrow"> %>
@@ -38,7 +38,7 @@
   </div>
   <div class="index-new-modal">
     <div id="new-modal" class="hidden mt-4">
-      <%= render "days/new" %>
+      <%= render "events/new" %>
     </div>
   </div>
 </div>

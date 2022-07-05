@@ -1,11 +1,11 @@
 <%= render 'shared/navbar' %>
 <div class="container">
   <div class="back-link">
-    <%= link_to days_path do %>
+    <%= link_to events_path do %>
       <i class="fa fa-arrow-left"></i>
     <% end %>
   </div>
-  <h2 class="text-center days-title">Créer un nouveau dossier</h2>
+  <h2 class="text-center events-title">Créer un nouveau dossier</h2>
   <%= simple_form_for(@folder) do |f| %>
     <div id="new-folder-form" class="form-inputs">
       <%= f.input :name,
@@ -13,11 +13,11 @@
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "name" } %>
-      <%= f.input :days, collection: @days, :label_method => :day_label, :value_method => :id,:label => "Evènements" ,:include_blank => true, input_html: { multiple: true } %>
+      <%= f.input :events, collection: @events, :label_method => :event_label, :value_method => :id,:label => "Evènements" ,:include_blank => true, input_html: { multiple: true } %>
     </div>
     <div class="form-actions">
-      <%= link_to "Annuler", days_path, class:'btn btn-danger' %>
-      <%= f.button :submit, "Enregistrer", class:'btn btn-primary', id:"save-new-day" %>
+      <%= link_to "Annuler", events_path, class:'btn btn-danger' %>
+      <%= f.button :submit, "Enregistrer", class:'btn btn-primary', id:"save-new-event" %>
     </div>
   <% end %>
 </div>

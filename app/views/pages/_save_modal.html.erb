@@ -5,23 +5,23 @@
       <%= fa_icon "warning" %> <h6> Veuillez être connecté afin de pouvoir sauvegarder </h6> <%= fa_icon "warning" %>
     </div>
     <h5 class='mt-4 danger'>Choisir une évènement :</h5>
-    <select id="save-day-select" class="form-select" aria-label="Default select example" value="<%= @selected_day.first.id if @selected_day.present? %>">
+    <select id="save-event-select" class="form-select" aria-label="Default select example" value="<%= @selected_event.first.id if @selected_event.present? %>">
 
-      <% if @selected_day.present? %>
-        <option class="days-item selected-item" value="<%= @selected_day.first.id %>">
-          <%= @selected_day.first.date.strftime('%d/%m/%Y') %> - <%= @selected_day.first.name.capitalize %>
+      <% if @selected_event.present? %>
+        <option class="events-item selected-item" value="<%= @selected_event.first.id %>">
+          <%= @selected_event.first.date.strftime('%d/%m/%Y') %> - <%= @selected_event.first.name.capitalize %>
         </option>
       <% end %>
-      <% days.each do |day| %>">
-        <% if @selected_day.present? %>
-          <% unless @selected_day.first.id === day.id %>
-            <option class="days-item" value="<%= day.id %>">
-              <%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %>
+      <% events.each do |event| %>">
+        <% if @selected_event.present? %>
+          <% unless @selected_event.first.id === event.id %>
+            <option class="events-item" value="<%= event.id %>">
+              <%= event.date.strftime('%d/%m/%Y') %> - <%= event.name.capitalize %>
             </option>
           <% end %>
         <% else %>
-        <option class="days-item" value="<%= day.id %>">
-          <%= day.date.strftime('%d/%m/%Y') %> - <%= day.name.capitalize %>
+        <option class="events-item" value="<%= event.id %>">
+          <%= event.date.strftime('%d/%m/%Y') %> - <%= event.name.capitalize %>
         </option>
         <% end %>
       <% end %>
@@ -43,11 +43,11 @@
     <div id="save-submit-button" class="btn btn-primary mt-4">
       Sauvegarder
     </div>
-    <div class="btn btn-success mt-4", id="new-day-button">
+    <div class="btn btn-success mt-4", id="new-event-button">
       Créer un nouvel évènement
     </div>
     <div id="new-modal" class="hidden mt-4">
-      <%= render "days/new" %>
+      <%= render "events/new" %>
     </div>
     <div id="save-cancel-button" class="btn btn-warning mt-4">
       Retour

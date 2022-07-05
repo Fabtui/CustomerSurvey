@@ -11,8 +11,8 @@ import { surveyClick } from '../components/survey_click'
 import { totalClick } from '../components/total_click'
 import { closeButtonClick } from '../components/close_button_click'
 import { saveStates } from '../components/save_states'
-import { displayNewForm } from '../components/display_new_day_form'
-import { newDay } from '../components/new_day'
+import { displayNewForm } from '../components/display_new_event_form'
+import { newEvent } from '../components/new_event'
 import { displaySaveModal } from '../components/display_save_modal'
 import { cancelSave } from '../components/cancel_save'
 import { previewImageOnFileSelect } from '../components/photo_preview'
@@ -37,7 +37,7 @@ document.addEventListener('turbolinks:load', () => {
   closeButtonClick();
   saveStates();
   displayNewForm();
-  newDay();
+  newEvent();
   displaySaveModal();
   cancelSave();
   previewImageOnFileSelect();
@@ -57,14 +57,14 @@ document.addEventListener('turbolinks:load', () => {
         link.click();
       }
   });
-  initSweetalert('#days-link-button', {
+  initSweetalert('#events-link-button', {
     title: "Attention!",
     text: "Vous allez perdre vos données non sauvegardées si vous n'êtes pas connecté à internet, êtes vous sûre?",
     icon: "warning",
     buttons: ["Annuler", "Continuer"],
     className: "sweet-alert-modal",
     }, (value) => {
-      const link = document.querySelector('#days-link');
+      const link = document.querySelector('#events-link');
       if (value) {
         link.click();
       }
@@ -94,5 +94,5 @@ document.addEventListener('turbolinks:load', () => {
       }
   });
   initSweetalertMultiDestroyFolder('.folder-delete-button', 'folder', 'ce dossier');
-  initSweetalertMultiDestroy('.day-delete-button', 'day', 'cet évènement')
+  initSweetalertMultiDestroy('.event-delete-button', 'event', 'cet évènement')
 })

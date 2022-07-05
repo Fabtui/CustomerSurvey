@@ -1,7 +1,7 @@
 import Chart from 'chart.js/auto';
 
 const chartJs = () => {
-  const indexContainer = document.querySelector('.days-container')
+  const indexContainer = document.querySelector('.events-container')
   if (indexContainer) {
     const ctx = document.querySelectorAll('#myChart');
     ctx.forEach(ctx => {

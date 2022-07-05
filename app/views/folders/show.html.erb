@@ -1,11 +1,11 @@
-<div class="container days-container">
+<div class="container events-container">
   <div class="back-link">
-    <%= link_to days_path do %>
+    <%= link_to events_path do %>
       <i class="fa fa-arrow-left"></i>
     <% end %>
   </div>
 
-  <h2 class="days__title"><%= image_tag 'folder.png', width:"35px", height:"25px" %> <%= @folder.name.capitalize %></h2>
+  <h2 class="events__title"><%= image_tag 'folder.png', width:"35px", height:"25px" %> <%= @folder.name.capitalize %></h2>
   <div class="download-link-container">
     <div class="folder__edit__links">
       <%= link_to edit_folder_path(@folder.id) do %>
@@ -15,22 +15,22 @@
       <%= link_to "delete", folder_path(@folder.id, all: false), class:'hidden', id:"folder-delete-link-#{@folder.id}", method: 'delete' %>
       <%= link_to "delete", folder_path(@folder.id, all: true), class:'hidden', id:"folder-delete-link-#{@folder.id}-all", method: 'delete' %>
     </div>
-    <% unless @days.count.zero? %>
+    <% unless @events.count.zero? %>
       <%= link_to folder_path(id: @folder.id, format: :xlsx) do %>
         <%= fa_icon "file-excel-o" %>
       <% end %>
     <% end %>
   </div>
 
-  <% if @days.count.zero? %>
+  <% if @events.count.zero? %>
     <h6 class="text-center mt-4 mb-4">Aucun évenement créé</h6>
   <% else %>
-    <% @days.each do |day| %>
-      <%= render "days/index_card", day:day %>
+    <% @events.each do |event| %>
+      <%= render "events/index_card", event:event %>
     <% end %>
   <% end %>
-  <div class="new-day-button-container">
-    <div class="btn btn-success mt-4", id="new-day-button">
+  <div class="new-event-button-container">
+    <div class="btn btn-success mt-4", id="new-event-button">
       Créer un nouvel évènement
     </div>
     <%# <div class="arrow-down hide-arrow"> %>
@@ -39,7 +39,7 @@
   </div>
   <div class="index-new-modal">
     <div id="new-modal" class="hidden mt-4">
-      <%= render "days/new", folder:@folder %>
+      <%= render "events/new", folder:@folder %>
     </div>
   </div>
 </div>

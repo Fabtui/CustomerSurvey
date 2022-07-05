@@ -2,7 +2,7 @@ import $ from 'jquery'
 import 'select2'
 
 const initSelect2 = () => {
-  $('#folder_days').select2()
+  $('#folder_events').select2()
 
   // $('.select2-selection')
   //   .prepend("Par style")

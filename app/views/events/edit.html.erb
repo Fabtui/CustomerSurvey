@@ -1,6 +1,6 @@
 <div class="container">
-  <%= simple_form_for(@day, as: :day, method: :patch, url: day_path) do |f| %>
-    <div id="new-day-form" class="form-inputs">
+  <%= simple_form_for(@event, as: :event, method: :patch, url: event_path) do |f| %>
+    <div id="new-event-form" class="form-inputs">
       <%= f.input :name,
                   label: 'Nom',
                   required: true,
@@ -11,9 +11,9 @@
                   required: true,
                   autofocus: true,
                   input_html: { autocomplete: "location" } %>
-      <%= f.input :date, as: :date, start_year: Date.today.year,
-                  end_year: Date.today.year - 2,
-                  order: [:day, :month, :year],
+      <%= f.input :date, as: :date, start_year: Date.toevent.year,
+                  end_year: Date.toevent.year - 2,
+                  order: [:event, :month, :year],
                   label: 'Date',
                   required: true,
                   autofocus: true,
@@ -25,12 +25,12 @@
                   required: false,
                   autofocus: true,
                   input_html: { autocomplete: "tag_line" } %>
-      <%= f.input :folder, :collection => @folders, value:@day.folder , :value_method => :id, :label => "Dossier" ,:include_blank => true %>
+      <%= f.input :folder, :collection => @folders, value:@event.folder , :value_method => :id, :label => "Dossier" ,:include_blank => true %>
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "Enregistrer", class:'btn btn-primary', id:"save-new-day" %>
-      <%= f.button :submit, "Annuler", class:'btn btn-danger', id:"cancel-new-day" %>
+      <%= f.button :submit, "Enregistrer", class:'btn btn-primary', id:"save-new-event" %>
+      <%= f.button :submit, "Annuler", class:'btn btn-danger', id:"cancel-new-event" %>
     </div>
   <% end %>
 </div>

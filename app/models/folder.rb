@@ -1,4 +1,4 @@
 class Folder < ApplicationRecord
-  has_many :days
+  has_many :events
   validates :name, presence: true
 end
