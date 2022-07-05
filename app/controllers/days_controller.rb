@@ -1,6 +1,8 @@
 class DaysController < ApplicationController
   def index
-    @days = Day.where(user_id: current_user.id).order(date: :desc)
+    @families = Family.all
+    @all_days = Day.where(user_id: current_user.id)
+    @days = Day.where(user_id: current_user.id).where(family_id: nil).order(date: :desc)
     @day = Day.new
     respond_to do |format|
       format.html
@@ -33,7 +35,7 @@ class DaysController < ApplicationController
         pdf.text " "
         pdf.text "Résultats :", size: 16
         pdf.text " "
-        if @day.good.present?
+        unless @day.total.zero?
           pdf.text "Mauvais: #{@day.bad}       (#{(@day.bad * 100) / @day.total} %)", size: 16
           pdf.text "Moyen: #{@day.middle}          (#{(@day.middle * 100) / @day.total} %)", size: 16
           pdf.text "Bon: #{@day.good}              (#{(@day.good * 100) / @day.total} %)", size: 16

@@ -1,10 +1,14 @@
 <div class="container days-container">
-  <%= render 'shared/back_link' %>
-  <h2 class="text-center days-title">Evènements</h2>
-  <div class="download-link-container">
-    <%= link_to new_family_path do %>
-    <%= fa_icon "folder" %>
+  <div class="back-link">
+    <%= link_to days_path do %>
+      <i class="fa fa-arrow-left"></i>
     <% end %>
+  </div>
+
+  <h2 class="text-center days-title"><%= @family.name %></h2>
+  <div class="download-link-container">
+    <div class="empty__div">
+    </div>
     <% unless @days.count.zero? %>
       <%= link_to days_path(format: :xlsx) do %>
         <%= fa_icon "download" %>
@@ -12,19 +16,11 @@
     <% end %>
   </div>
 
-<% unless @families.count.zero? %>
-  <div class="folders__container">
-    <% @families.each do |family| %>
-      <%= render 'family_card', family:family %>
-    <% end %>
-  </div>
-<% end %>
-
-  <% if @all_days.count.zero? %>
+  <% if @days.count.zero? %>
     <h6 class="text-center mt-4 mb-4">Aucun évenement créé</h6>
   <% else %>
     <% @days.each do |day| %>
-      <%= render "index_card", day:day %>
+      <%= render "days/index_card", day:day %>
     <% end %>
   <% end %>
   <div class="new-day-button-container">
