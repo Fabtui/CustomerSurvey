@@ -1,24 +1,25 @@
 <div class="container days-container">
   <%= render 'shared/back_link' %>
   <h2 class="text-center days-title">Evènements</h2>
+
+  <% unless @folders.count.zero? %>
+    <div class="folders__container">
+      <% @folders.each do |folder| %>
+        <%= render 'folder_card', folder:folder %>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="download-link-container">
-    <%= link_to new_family_path do %>
+    <%= link_to new_folder_path do %>
     <%= fa_icon "folder" %>
     <% end %>
     <% unless @days.count.zero? %>
       <%= link_to days_path(format: :xlsx) do %>
-        <%= fa_icon "download" %>
+        <%= fa_icon "file-excel-o" %>
       <% end %>
     <% end %>
   </div>
-
-<% unless @families.count.zero? %>
-  <div class="folders__container">
-    <% @families.each do |family| %>
-      <%= render 'family_card', family:family %>
-    <% end %>
-  </div>
-<% end %>
 
   <% if @all_days.count.zero? %>
     <h6 class="text-center mt-4 mb-4">Aucun évenement créé</h6>

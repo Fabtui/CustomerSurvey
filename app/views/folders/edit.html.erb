@@ -5,7 +5,7 @@
     <% end %>
   </div>
   <h2 class="text-center days-title">Editer le dossier</h2>
-  <%= simple_form_for(@family) do |f| %>
+  <%= simple_form_for(@folder) do |f| %>
     <div id="new-day-form" class="form-inputs">
       <%= f.input :name,
                   label: 'Nom',
@@ -14,7 +14,7 @@
                   input_html: { autocomplete: "name" } %>
     </div>
     <div class="form-actions">
-      <%= link_to "Annuler", family_path(@family.id), class:'btn btn-danger' %>
+      <%= link_to "Annuler", folder_path(@folder.id), class:'btn btn-danger' %>
       <%= f.button :submit, "Enregistrer", class:'btn btn-primary' %>
     </div>
   <% end %>
