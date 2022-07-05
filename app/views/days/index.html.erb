@@ -2,6 +2,9 @@
   <%= render 'shared/back_link' %>
   <h2 class="text-center days-title">Evènements</h2>
   <div class="download-link-container">
+    <%= link_to new_family_path do %>
+    <%= fa_icon "folder" %>
+    <% end %>
     <% unless @days.count.zero? %>
       <%= link_to days_path(format: :xlsx) do %>
         <%= fa_icon "download" %>
