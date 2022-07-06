@@ -19,15 +19,33 @@
   </div>
   <h7><%= event.location %></h7>
   <% if event.total && !event.total.zero? %>
+
     <div class="event__chart__container" id="container-<%= event.id %>">
       <div class="event__chart__content hide-content" id="content-<%= event.id %>">
-        <canvas id="myChart" width="400" max-height="200" data-good="<%= event.good %>" data-middle="<%= event.middle %>" data-bad="<%= event.bad %>" data-total="<%= event.total %>"></canvas>
-        <div class="chart-labels">
-          <div class="chart-labels-item">
-            <div class="th-smiley">
-              <%= image_tag 'dislike.png', height: '25', width: '25'  %>
+        
+    <canvas id="myChart" width="400" max-height="200" data-good="<%= event.good %>" data-middle="<%= event.middle %>" data-bad="<%= event.bad %>" data-total="<%= event.total %>"></canvas>
+    
+    <div class="chart-labels chart-label-pourcent">
+      <div class="chart-labels-item">
+        <h7><%= ((event.bad * 100) / event.total).ceil %>%</h7>
+      </div>
+      <div class="chart-labels-item">
+        <h7><%= ((event.middle * 100) / event.total).ceil %>%</h7>
+      </div>
+      <div class="chart-labels-item">
+        <h7><%= ((event.good * 100) / event.total).ceil %>%</h7>
+      </div>
+      <div class="chart-labels-item">
+        <h7>100%</h7>
+      </div>
+    </div>
+    
+    <div class="chart-labels">
+            <div class="chart-labels-item">
+              <div class="th-smiley">
+                <%= image_tag 'dislike.png', height: '25', width: '25'  %>
+              </div>
             </div>
-          </div>
           <div class="chart-labels-item">
             <div class="th-smiley">
               <%= image_tag 'middle.png', height: '25', width: '25'  %>
