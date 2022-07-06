@@ -1,4 +1,4 @@
-<div class="stats-item" id="<%= event.id %>">
+<div class="stats-item">
   <div class="stat-header">
     <div class="stat-header-left">
       <h5><strong><%= event.date.strftime('%d/%m/%Y') %> - <%= event.name.capitalize %></strong></h5>
@@ -21,9 +21,7 @@
   <% if event.total && !event.total.zero? %>
     <div class="event__chart__container fold__container" id="container-<%= event.id %>">
       <div class="event__chart__content fold__content" id="content-<%= event.id %>">
-
         <canvas id="myChart" width="400" max-height="200" data-good="<%= event.good %>" data-middle="<%= event.middle %>" data-bad="<%= event.bad %>" data-total="<%= event.total %>"></canvas>
-
         <div class="chart-labels">
                 <div class="chart-labels-item">
                   <div class="th-smiley">
@@ -47,6 +45,9 @@
       </div>
     </div>
 
+  <div class="unfold__arrow__container" id="<%= event.id %>">
+    <%= fa_icon 'angle-down', id: event.id %>
+  </div>
     <%#= render 'stats_table', event:event %>
   <% else %>
     <h6 class='mt-4 text-center'>Aucune donnée pour cet évènement</h6>
