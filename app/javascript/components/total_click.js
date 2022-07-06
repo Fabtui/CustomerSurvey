@@ -13,13 +13,13 @@ const totalClick = () => {
       const dislikeStatTd = document.querySelector('#dislike-stats-td')
       const middleStatTd = document.querySelector('#middle-stats-td')
       const likeStatTd = document.querySelector('#like-stats-td')
+      const dislikeStats = Math.round((dislike / total)*100)
+      const likeStats = Math.round((like / total)*100)
+      const middleStats = Math.round((middle / total)*100)
       dislikeTd.innerText = dislike
       likeTd.innerText = like
       middleTd.innerText = middle
       totalTd.innerText = total
-      const dislikeStats = Math.round((dislike / total)*100)
-      const likeStats = Math.round((like / total)*100)
-      const middleStats = Math.round((middle / total)*100)
       if (dislikeStats) {
         dislikeStatTd.innerText = `${dislikeStats}%`
       } else {

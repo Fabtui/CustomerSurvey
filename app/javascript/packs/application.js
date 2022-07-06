@@ -22,7 +22,9 @@ import { initSweetalert } from '../components/init_sweet_alert'
 import { initSweetalertMultiDestroy } from '../components/init_sweet_alert_multi_destroy'
 import { initSweetalertMultiDestroyFolder } from '../components/init_sweet_alert_milti_destroy_folder'
 import { chartJs } from '../components/chart'
+import { chartHomeJs } from '../components/chart_home'
 import { initSelect2 } from '../components/init_select2';
+import { unfoldEventCard } from '../components/unfold_event_card'
 
 Rails.start()
 Turbolinks.start()
@@ -33,8 +35,8 @@ import "bootstrap"
 
 document.addEventListener('turbolinks:load', () => {
   surveyClick();
-  totalClick();
-  closeButtonClick();
+  // totalClick();
+  // closeButtonClick();
   saveStates();
   displayNewForm();
   newEvent();
@@ -44,7 +46,9 @@ document.addEventListener('turbolinks:load', () => {
   navbarButton();
   offLineSwitch();
   chartJs()
+  chartHomeJs()
   initSelect2()
+  unfoldEventCard()
   initSweetalert('#home-link-button', {
     title: "Attention!",
     text: "Vous allez perdre vos données non sauvegardées si vous n'êtes pas connecté à internet, êtes vous sûre?",
