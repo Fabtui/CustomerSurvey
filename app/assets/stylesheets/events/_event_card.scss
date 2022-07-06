@@ -48,19 +48,16 @@
 
 .event__chart__container {
   overflow: hidden;
-  transition: all 0.3s;
-}
-
-.fold__container {
-  height: 0;
+  transition: all 0.2s;
+  height: 0px;
 }
 
 .event__chart__content {
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
-.fold__content {
-  transform: translateY(-240px);
+.hide-content {
+  opacity: 0;
 }
 
 .unfold__arrow__container {
@@ -69,5 +66,15 @@
   i {
     font-size: 32px;
     color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+@keyframes unfold {
+  from {
+    height: 0px;
+  }
+
+  to {
+    height: auto;
   }
 }
