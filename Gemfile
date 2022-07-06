@@ -27,6 +27,8 @@ gem "font-awesome-rails"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'jquery-rails', '~> 4.4'
+gem 'select2-rails'
 gem 'axlsx_rails'
 gem 'axlsx_styler'
 gem 'devise'
