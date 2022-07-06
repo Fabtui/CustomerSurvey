@@ -1,4 +1,4 @@
-<%= link_to folder_path(folder.id) do %>
+<%= link_to folder_path(folder.id), class:"droppable" do %>
   <div class="folders__item">
     <% if folder.events.pluck(:selected).include?(true) %>
       <div class="selected folder__mark"><%= fa_icon "check" %></div>

@@ -1,3 +1,5 @@
+import { csrfToken } from "@rails/ujs"
+
 const dragDrop = () => {
   const eventsContainer = document.querySelector('.index__cards_container')
   if (eventsContainer) {
@@ -8,6 +10,8 @@ const dragDrop = () => {
         statItem.style.position = 'absolute';
         statItem.style.zIndex = 1000;
 
+        let shiftX = e.clientX - statItem.getBoundingClientRect().left;
+        let shiftY = e.clientY - statItem.getBoundingClientRect().top;
         // move it out of any current parents directly into body
         // to make it positioned relative to the body
         document.body.append(statItem);
@@ -19,7 +23,7 @@ const dragDrop = () => {
         }
 
         // move our absolutely positioned statItem under the pointer
-        moveAt(event.pageX, event.pageY);
+        moveAt(e.pageX, e.pageY);
 
         function onMouseMove(event) {
           moveAt(event.pageX, event.pageY);
@@ -39,6 +43,67 @@ const dragDrop = () => {
         statItem.ondragstart = function() {
           return false;
         };
+
+        let currentDroppable = null;
+
+
+
+        function onMouseMove(event) {
+        moveAt(event.pageX, event.pageY);
+
+        statItem.hidden = true;
+        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+        statItem.hidden = false;
+
+        // mousemove events may trigger out of the window (when the statItem is dragged off-screen)
+        // if clientX/clientY are out of the window, then elementFromPoint returns null
+        if (!elemBelow) return;
+
+        // potential droppables are labeled with the class "droppable" (can be other logic)
+        let droppableBelow = elemBelow.closest('.droppable');
+
+        if (currentDroppable != droppableBelow) {
+          // we're flying in or out...
+          // note: both values can be null
+          //   currentDroppable=null if we were not over a droppable before this event (e.g over an empty space)
+          //   droppableBelow=null if we're not over a droppable now, during this event
+
+          if (currentDroppable) {
+            statItem.onmouseup = function() {
+              eventsContainer.append(statItem);
+              statItem.style.position = '';
+              document.removeEventListener('mousemove', onMouseMove);
+              statItem.onmouseup = null;
+            };
+            // the logic to process "flying out" of the droppable (remove highlight)
+            // leaveDroppable(currentDroppable);
+          }
+          currentDroppable = droppableBelow;
+          if (currentDroppable) {
+            statItem.addEventListener('mouseup', () => {
+              fetch(currentDroppable.href.toString(), {
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                  "X-CSRF-Token": csrfToken()
+                },
+                method: 'PATCH',
+                body: JSON.stringify( { id: statItem.dataset.id } )
+              }).then(response => hideTarget(response))
+            })
+
+            const hideTarget = (response) => {
+              if (response.ok) {
+                statItem.style.transition = "all 0.2s"
+                statItem.style.opacity = '0';
+              }
+            }
+            // the logic to process "flying in" of the droppable
+            // enterDroppable(currentDroppable);
+          }
+        }
+      }
+
       })
     });
 
