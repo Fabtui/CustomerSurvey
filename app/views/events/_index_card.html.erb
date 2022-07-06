@@ -1,4 +1,4 @@
-<div class="stats-item">
+<div class="stats-item" draggable="true">
   <div class="stat-header">
     <div class="stat-header-left">
       <h5><strong><%= event.date.strftime('%d/%m/%Y') %> - <%= event.name.capitalize %></strong></h5>
@@ -22,9 +22,9 @@
 
     <div class="event__chart__container" id="container-<%= event.id %>">
       <div class="event__chart__content hide-content" id="content-<%= event.id %>">
-        
+
     <canvas id="myChart" width="400" max-height="200" data-good="<%= event.good %>" data-middle="<%= event.middle %>" data-bad="<%= event.bad %>" data-total="<%= event.total %>"></canvas>
-    
+
     <div class="chart-labels chart-label-pourcent">
       <div class="chart-labels-item">
         <h7><%= ((event.bad * 100) / event.total).ceil %>%</h7>
@@ -39,7 +39,7 @@
         <h7>100%</h7>
       </div>
     </div>
-    
+
     <div class="chart-labels">
             <div class="chart-labels-item">
               <div class="th-smiley">

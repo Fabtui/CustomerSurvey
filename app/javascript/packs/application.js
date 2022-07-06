@@ -35,8 +35,8 @@ import "bootstrap"
 
 document.addEventListener('turbolinks:load', () => {
   surveyClick();
-  // totalClick();
-  // closeButtonClick();
+  totalClick();
+  closeButtonClick();
   saveStates();
   displayNewForm();
   newEvent();
@@ -46,7 +46,7 @@ document.addEventListener('turbolinks:load', () => {
   navbarButton();
   offLineSwitch();
   chartJs()
-  chartHomeJs()
+  // chartHomeJs()
   initSelect2()
   unfoldEventCard()
   initSweetalert('#home-link-button', {

@@ -16,6 +16,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "select2": "^4.1.0-rc.0",
+    "sortablejs": "^1.15.0",
     "stimulus": "^3.0.1",
     "sweetalert": "^2.1.2",
     "turbolinks": "^5.2.0",
