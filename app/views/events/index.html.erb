@@ -27,10 +27,12 @@
   <% if @all_events.count.zero? %>
     <h6 class="text-center mt-4 mb-4">Aucun évenement créé</h6>
   <% else %>
+  <div class="index__cards_container">
     <% @events.each do |event| %>
       <%= render "index_card", event:event %>
     <% end %>
   <% end %>
+  </div>
   <div class="new-event-button-container">
     <div class="btn btn-success mt-4", id="new-event-button">
       Créer un nouvel évènement

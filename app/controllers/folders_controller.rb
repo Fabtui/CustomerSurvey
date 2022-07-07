@@ -39,9 +39,20 @@ class FoldersController < ApplicationController
   end
 
   def update
-    @folder = Folder.find(params[:id])
-    @folder.update(folder_params)
-    redirect_to folder_path(@folder.id), notice: "Le dossier a été édité"
+    respond_to do |format|
+      format.html {
+        @folder = Folder.find(params[:id])
+        @folder.update(folder_params)
+        redirect_to folder_path(@folder.id), notice: "Le dossier a été édité"
+      }
+      format.json {
+        @folder = Folder.find(params["id"])
+        @event = Event.find(params["folder"]["id"])
+        @event.folder_id = @folder.id
+        @event.save
+      }
+    end
+
   end
 
   def destroy

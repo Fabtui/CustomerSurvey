@@ -17,6 +17,9 @@
 
 .stat-header-left {
   display: flex;
+  h5:hover {
+    cursor: move;
+  }
 }
 
 .selected i {
@@ -35,14 +38,15 @@
     text-decoration: none;
     margin: 8px;
     font-size: 16px;
-
     &:hover {
       color: black;
     }
   }
-
   i {
     font-size: 20px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
@@ -67,14 +71,17 @@
     font-size: 32px;
     color: rgba(0, 0, 0, 0.6);
   }
-}
-
-@keyframes unfold {
-  from {
-    height: 0px;
-  }
-
-  to {
-    height: auto;
+  &:hover {
+    cursor: pointer;
   }
 }
+
+// @keyframes unfold {
+//   from {
+//     height: 0px;
+//   }
+
+//   to {
+//     height: auto;
+//   }
+// }
