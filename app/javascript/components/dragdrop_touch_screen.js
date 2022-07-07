@@ -35,13 +35,17 @@ const dragDropTouchScreen = () => {
         document.addEventListener('touchmove', onMouseMove)
 
         // (3) drop the statItem, remove unneeded handlers
-        statItem.ontouchend = function() {
-          eventsContainer.append(statItem);
-          statItem.style.position = '';
-          statItem.style.width = '';
-          document.removeEventListener('touchmove', onMouseMove);
-          statItem.ontouchend = null;
-        };
+        const releaseItem = () => {
+          statItem.ontouchend = function() {
+            eventsContainer.append(statItem);
+            statItem.style.position = '';
+            statItem.style.width = '';
+            document.removeEventListener('touchmove', onMouseMove);
+            statItem.ontouchend = null;
+          };
+        }
+
+        releaseItem();
 
         statItem.ondragstart = function() {
           return false;
@@ -91,13 +95,12 @@ const dragDropTouchScreen = () => {
                 },
                 method: 'PATCH',
                 body: JSON.stringify( { id: statItem.dataset.id } )
-              }).then(response => hideTarget(response))
+              })
+              hideTarget();
             })
 
-            const hideTarget = (response) => {
-              if (response.ok) {
+            const hideTarget = () => {
                 statItem.style.display = 'none'
-              }
             }
 
             const enterDroppable = (currentDroppable) => {
