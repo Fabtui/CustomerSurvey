@@ -8,17 +8,17 @@ const initSweetalertMultiDestroyFolder = (selector = () => {}, name, sentence) =
       swalButton.addEventListener('click', () => {
           const options = {
                   title: "Attention!",
-                  text: `Etes vous sûre de vouloir supprimer ${sentence}?`,
+                  text: `Etes vous sûre de vouloir supprimer ${sentence} ainsi que tout ses évènements?`,
                   icon: "warning",
                   buttons: {
                   cancel: "Annuler",
-                  folder: {
-                    text: "Dossier",
-                    value: "folder",
-                  },
                   all: {
                     text: "Tout",
                     value: "all",
+                  },
+                  folder: {
+                    text: "Dossier",
+                    value: "folder",
                   }},
                   className: "sweet-alert-modal"
                 }
