@@ -3,7 +3,8 @@ const closeButtonClick = () => {
   if (closeButton) {
     closeButton.addEventListener('click', () => {
       const totalContainer = document.querySelector('.total-container')
-      totalContainer.style.display = 'none';
+      // totalContainer.style.display = 'none';
+      totalContainer.classList.add('hide-total')
     })
   };
 }

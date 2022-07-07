@@ -1,8 +1,14 @@
 .total-container {
-  display: none;
+  display: flex;
   justify-content: center;
   width: 100%;
   transform: translateY(-75vh);
+  transition: all 0.3s cubic-bezier(.38,-0.54,.65,1.49);
+}
+
+.hide-total {
+  transition: all 0.3s cubic-bezier(.38,-0.54,.65,1.49);
+  transform: translateY(-250vh);
 }
 
 .total-container-content {
@@ -12,30 +18,32 @@
 }
 
 .total-container-items {
-  padding: 44px 80px;
-  background-color: #f1efeff2;
+  padding: 8vw 12vw;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: rgba(236, 236, 236, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(7px);
+  border-radius: 10px;
+  border: 1px solid rgba(164, 164, 164, 0.18);
   position: relative;
   border-radius: 10px;
   box-shadow: 4px 4px 8px #0000001a;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-
   table {
     width: 60%;
   }
-
-
   table,
   th,
   td {
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.7);
     text-align: center;
-    padding: 20px;
-    background-color: white;
+    padding: 2vh;
+    background-color: rgba(255, 255, 255, 0.9);
   }
 
   i {
     font-size: 28px;
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(0, 0, 0, 0.6);
   }
 }
 
@@ -53,13 +61,24 @@
 }
 
 .th-total-smiley {
-  height: 50px;
-  width: 50px;
+  height: 5vh;
+  width: 5vh;
   border-radius: 50%;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  img {
+    height: 5vh;
+    width: 5vh;
+  }
 }
 
 // #myChartHome {
 //   min-height: 300px;
 //   min-width: 500px;
 // }
+
+@media screen and (max-width: 750px) {
+  table, th, td {
+    background-color: red;
+    padding: 2vh;
+  }
+}
