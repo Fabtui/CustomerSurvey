@@ -36,7 +36,8 @@ const totalClick = () => {
         middleStatTd.innerText = `0%`
       }
       const totalContainer = document.querySelector('.total-container')
-      totalContainer.style.display = 'flex';
+      // totalContainer.style.display = 'flex';
+      totalContainer.classList.remove('hide-total')
     })
   };
 }
