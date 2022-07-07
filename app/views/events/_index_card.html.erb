@@ -20,7 +20,7 @@
       </div>
       <% end %>
 
-      <%= link_to edit_event_path(event.id) do %>
+      <%= link_to edit_event_path(event.id, from: controller_name) do %>
         <%= fa_icon "pencil" %>
       <% end %>
       <i class="fa fa-trash event-delete-button" aria-hidden="true" id='<%= event.id %>'></i>
