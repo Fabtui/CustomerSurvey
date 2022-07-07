@@ -14,100 +14,9 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    if @event.good.present?
-      satisfaction = ((((@event.middle.to_f / 2) + (@event.good))*100).to_f / @event.total).round(2)
-    end
-    good_pc = ((@event.good * 100) / @event.total) * 2
-    middle_pc = ((@event.middle * 100) / @event.total) * 2
-    bad_pc = ((@event.bad * 100) / @event.total) * 2
-    total = 200
-
     respond_to do |format|
       format.pdf do
-        pdf = Prawn::Document.new
-        # pdf.fill_color('0000ff')
-
-        pdf.image "#{Rails.root}/app/assets/images/Customer.png", :at => [0,730], :width => 80, :height => 80
-        pdf.text "Customer Satisfaction", size: 32, align: :center
-        pdf.text "Survey", size: 32, align: :center
-        pdf.text " "
-        pdf.text " "
-        pdf.text " "
-        pdf.text " "
-        pdf.text @event.name, size: 22
-        pdf.text @event.date.strftime('%d/%m/%Y'), size: 16
-        pdf.text @event.location, size: 16
-        pdf.text " "
-        pdf.text " "
-        pdf.text " "
-        pdf.text "Résultats :", size: 16
-        pdf.text " "
-
-        unless @event.total.zero?
-
-        x = 150
-        y = 200
-        bad_x = x
-        middle_x = x+100
-        good_x = x+200
-        total_x = x+300
-        pdf.blend_mode(:Multiply) do
-          pdf.fill_color('ff6b6b')
-          pdf.fill_rectangle([bad_x, bad_pc+y], 50, bad_pc)
-          pdf.stroke_color 0, 255, 0, 0
-          pdf.stroke_rectangle [bad_x, bad_pc+y], 50, bad_pc
-        end
-        pdf.blend_mode(:Multiply) do
-          pdf.fill_color('f9f61d')
-          pdf.fill_rectangle([middle_x, middle_pc+y], 50, middle_pc)
-          pdf.stroke_color 'f2eb1f'
-          pdf.stroke_rectangle [middle_x, middle_pc+y], 50, middle_pc
-        end
-        pdf.blend_mode(:Multiply) do
-          pdf.fill_color('0ecb43')
-          pdf.fill_rectangle([good_x, good_pc+y], 50, good_pc)
-          pdf.stroke_color 255, 0, 0, 0
-          pdf.stroke_rectangle [good_x, good_pc+y], 50, good_pc
-        end
-          pdf.blend_mode(:Multiply) do
-          pdf.fill_rectangle([total_x, total+y], 50, total)
-        end
-
-        pdf.stroke_color '000000'
-
-        pdf.stroke_axis(
-          at: [50, 200], width: 420, height: 220,
-          step_length: 500, negative_axes_length: 10, color: '000000')
-
-
-        pdf.dash([1, 2, 3, 2, 1, 5], phase: 6)
-        pdf.stroke_horizontal_line 50, bad_x, at: bad_pc+y
-        pdf.dash([1, 2, 3, 2, 1, 5], phase: 6)
-        pdf.stroke_horizontal_line 50, middle_x, at: middle_pc+y
-        pdf.dash([1, 2, 3, 2, 1, 5], phase: 6)
-        pdf.stroke_horizontal_line 50, good_x, at: good_pc+y
-        pdf.dash([1, 2, 3, 2, 1, 5], phase: 6)
-        pdf.stroke_horizontal_line 50, total_x, at: total+y
-
-        pdf.draw_text "Mauvais (#{@event.bad})", :at => [bad_x-5 , y-20 ]
-        pdf.draw_text "Moyen (#{@event.middle})", :at => [middle_x , y-20 ]
-        pdf.draw_text "Bon (#{@event.good})", :at => [good_x+5 , y-20 ]
-        pdf.draw_text "Total (#{@event.total})", :at => [total_x+5 , y-20 ]
-
-        pdf.draw_text "#{bad_pc/2}%", :at => [15 , bad_pc+y-5 ]
-        pdf.draw_text "#{middle_pc/2}%", :at => [15 , middle_pc+y-5 ]
-        pdf.draw_text "#{good_pc/2}%", :at => [15 , good_pc+y-5 ]
-        pdf.draw_text "#{total/2}%", :at => [15 , total+y-5 ]
-
-        pdf.draw_text "Taux de satisfaction: #{satisfaction} %", size: 18, :at => [140, 80]
-
-        else
-          pdf.text "Pas de donné pour cet évènement"
-        end
-        send_data pdf.render,
-          filename: "CustomerSurvey #{@event.date.strftime('%d/%m/%Y')}.pdf",
-          type: 'application/pdf',
-          disposition: 'inline'
+        generate_pdf(@event)
       end
     end
   end
@@ -238,4 +147,97 @@ class EventsController < ApplicationController
     end
   end
 
+  def generate_pdf(event)
+    unless event.good.zero?
+      good_pc = ((event.good * 100) / event.total) * 2
+      middle_pc = ((event.middle * 100) / event.total) * 2
+      bad_pc = ((event.bad * 100) / event.total) * 2
+      total = 200
+      satisfaction = ((((@event.middle.to_f / 2) + (@event.good))*100).to_f / @event.total).round(2)
+    end
+
+    pdf = Prawn::Document.new
+    # pdf.fill_color('0000ff')
+
+    pdf.image "#{Rails.root}/app/assets/images/Customer.png", :at => [0,730], :width => 80, :height => 80
+    pdf.text "Customer Satisfaction", size: 32, align: :center
+    pdf.text "Survey", size: 32, align: :center
+    pdf.text " "
+    pdf.text " "
+    pdf.text " "
+    pdf.text " "
+    pdf.text event.name, size: 22
+    pdf.text event.date.strftime('%d/%m/%Y'), size: 16
+    pdf.text event.location, size: 16
+    pdf.text " "
+    pdf.text " "
+    pdf.text " "
+    pdf.text "Résultats :", size: 16
+    pdf.text " "
+
+    unless event.total.zero?
+      x = 150
+      y = 200
+      bad_x = x
+      middle_x = x+100
+      good_x = x+200
+      total_x = x+300
+      pdf.blend_mode(:Multiply) do
+        pdf.fill_color('ff6b6b')
+        pdf.fill_rectangle([bad_x, bad_pc+y], 50, bad_pc)
+        pdf.stroke_color 0, 255, 0, 0
+        pdf.stroke_rectangle [bad_x, bad_pc+y], 50, bad_pc
+      end
+      pdf.blend_mode(:Multiply) do
+        pdf.fill_color('f9f61d')
+        pdf.fill_rectangle([middle_x, middle_pc+y], 50, middle_pc)
+        pdf.stroke_color 'f2eb1f'
+        pdf.stroke_rectangle [middle_x, middle_pc+y], 50, middle_pc
+      end
+      pdf.blend_mode(:Multiply) do
+        pdf.fill_color('0ecb43')
+        pdf.fill_rectangle([good_x, good_pc+y], 50, good_pc)
+        pdf.stroke_color 255, 0, 0, 0
+        pdf.stroke_rectangle [good_x, good_pc+y], 50, good_pc
+      end
+        pdf.blend_mode(:Multiply) do
+        pdf.fill_rectangle([total_x, total+y], 50, total)
+      end
+
+      pdf.stroke_color '000000'
+
+      pdf.stroke_axis(
+        at: [50, 200], width: 420, height: 220,
+        step_length: 500, negative_axes_length: 10, color: '000000')
+
+
+      pdf.dash([1, 2, 3, 2, 1, 5], phase: 6)
+      pdf.stroke_horizontal_line 50, bad_x, at: bad_pc+y
+      pdf.dash([1, 2, 3, 2, 1, 5], phase: 6)
+      pdf.stroke_horizontal_line 50, middle_x, at: middle_pc+y
+      pdf.dash([1, 2, 3, 2, 1, 5], phase: 6)
+      pdf.stroke_horizontal_line 50, good_x, at: good_pc+y
+      pdf.dash([1, 2, 3, 2, 1, 5], phase: 6)
+      pdf.stroke_horizontal_line 50, total_x, at: total+y
+
+      pdf.draw_text "Mauvais (#{event.bad})", :at => [bad_x-5 , y-20 ]
+      pdf.draw_text "Moyen (#{event.middle})", :at => [middle_x , y-20 ]
+      pdf.draw_text "Bon (#{event.good})", :at => [good_x+5 , y-20 ]
+      pdf.draw_text "Total (#{event.total})", :at => [total_x+5 , y-20 ]
+
+      pdf.draw_text "#{bad_pc/2}%", :at => [15 , bad_pc+y-5 ]
+      pdf.draw_text "#{middle_pc/2}%", :at => [15 , middle_pc+y-5 ]
+      pdf.draw_text "#{good_pc/2}%", :at => [15 , good_pc+y-5 ]
+      pdf.draw_text "#{total/2}%", :at => [15 , total+y-5 ]
+
+      pdf.draw_text "Taux de satisfaction: #{satisfaction} %", size: 18, :at => [140, 80]
+
+    else
+      pdf.text "Pas de donné pour cet évènement"
+    end
+    send_data pdf.render,
+      filename: "CustomerSurvey #{event.date.strftime('%d/%m/%Y')}.pdf",
+      type: 'application/pdf',
+      disposition: 'inline'
+  end
 end
