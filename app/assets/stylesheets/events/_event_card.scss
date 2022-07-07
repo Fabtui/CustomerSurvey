@@ -17,9 +17,10 @@
 
 .stat-header-left {
   display: flex;
-  h5:hover {
-    cursor: move;
-  }
+}
+
+.stat-item-drag-target:hover {
+  cursor: move;
 }
 
 .selected i {
