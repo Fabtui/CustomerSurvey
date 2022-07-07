@@ -100,37 +100,35 @@ class EventsController < ApplicationController
       if @event.save
         redirect_to folder_path(@folder.id), notice: "L'évènement a été retiré du dossier"
       end
-    elsif params[:event][:folder].present?
-      @folder = Folder.find(params[:event][:folder])
-      @event.folder_id = @folder.id
-      if @event.save
-        redirect_to folder_path(@folder.id), notice: "L'évènement a été déplacé"
-      end
     else
-      @event.update(event_params)
-      if @event.save
-        if @event.folder
-          redirect_to folder_path(@event.folder.id), notice: "Votre évènement a été édité"
+    @event.update(event_params)
+      if params[:event][:folder].present?
+        @folder = Folder.find(params[:event][:folder])
+        @event.folder_id = @folder.id
+        if @event.save
+          redirect_to folder_path(@folder.id), notice: "L'évènement a été édité"
         else
-          redirect_to events_path, notice: "Votre évènement a été édité"
+          render :edit
+        end
+      elsif params[:event][:folder].empty? && @event.folder.present?
+        @event.folder_id = nil
+        if @event.save
+          redirect_to events_path, notice: "L'évènement a été édité"
+        else
+          render :edit
         end
       else
-        render :edit
+        if @event.save
+          if @event.folder
+            redirect_to folder_path(@event.folder.id), notice: "L'évènement a été édité"
+          else
+            redirect_to events_path, notice: "L'évènement a été édité"
+          end
+        else
+          render :edit
+        end
       end
     end
-    # @event = Event.new
-    # puts "---------------------"
-    # puts params
-    # respond_to do |format|
-    #   if @event.save
-    #     format.html { redirect_to events_path }
-    #     format.json # Follow the classic Rails flow and look for a create.json view
-    #     raise
-    #   else
-    #     format.html { redirect_to :root, alert: "Une erreur c'est produite, la création n'a pu aboutir" }
-    #     format.json # Follow the classic Rails flow and look for a create.json view
-    #   end
-    # end
   end
 
   def destroy
