@@ -18,6 +18,7 @@ const dragDropTouchScreen = () => {
         const statItem = document.querySelector(`#stats-item-${id}`)
         statItem.style.position = 'absolute';
         statItem.style.zIndex = 1000;
+        statItem.style.width = '60vw';
 
         let shiftX = e.clientX - statItem.getBoundingClientRect().left;
         let shiftY = e.clientY - statItem.getBoundingClientRect().top;
@@ -37,6 +38,7 @@ const dragDropTouchScreen = () => {
         statItem.ontouchend = function() {
           eventsContainer.append(statItem);
           statItem.style.position = '';
+          statItem.style.width = '';
           document.removeEventListener('touchmove', onMouseMove);
           statItem.ontouchend = null;
         };
@@ -74,6 +76,7 @@ const dragDropTouchScreen = () => {
             }
             // the logic to process "flying out" of the droppable (remove highlight)
             leaveDroppable(currentDroppable);
+            statItem.style.width = '';
           }
 
           currentDroppable = droppableBelow;
