@@ -28,7 +28,6 @@ const unfoldEventCard = () => {
         if (pos >= 240) {
           clearInterval(id);
         } else {
-          console.log(element);
           pos += 20;
           element.style.height = pos + 'px';
         }
@@ -44,7 +43,6 @@ const unfoldEventCard = () => {
         if (pos <= 0) {
           clearInterval(id);
         } else {
-          console.log(element);
           pos -= 20;
           element.style.height = pos + 'px';
         }
