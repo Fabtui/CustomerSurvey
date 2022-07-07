@@ -25,7 +25,7 @@ const unfoldEventCard = () => {
       clearInterval(id);
       id = setInterval(frame, 1);
       function frame() {
-        if (pos >= 220) {
+        if (pos >= 240) {
           clearInterval(id);
         } else {
           console.log(element);
@@ -37,7 +37,7 @@ const unfoldEventCard = () => {
 
     function fold(element) {
       let id = null;
-      let pos = 220;
+      let pos = 240;
       clearInterval(id);
       id = setInterval(frame, 1);
       function frame() {
