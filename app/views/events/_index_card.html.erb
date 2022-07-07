@@ -10,6 +10,16 @@
       <%= link_to event_path(id: event.id, format: :pdf) do %>
         <%= fa_icon "file-pdf-o" %>
       <% end %>
+
+      <% if controller_name == "folders" && action_name == "show" %>
+      <div class="remove__from__folder">
+        <%= link_to event_path(id: event.id, remove_folder: 'true'), method: :patch do %>
+          <%= fa_icon "folder" %>
+          <span>-</span>
+        <% end %>
+      </div>
+      <% end %>
+
       <%= link_to edit_event_path(event.id) do %>
         <%= fa_icon "pencil" %>
       <% end %>

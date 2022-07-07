@@ -94,13 +94,21 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.update(event_params)
-    if params[:event][:folder].present?
-      @event.folder_id = params[:event][:folder]
+    if params[:remove_folder].present?
+      @folder = @event.folder
+      @event.folder_id = nil
+    else
+      @event.update(event_params)
+      if params[:event][:folder].present?
+        @event.folder_id = params[:event][:folder]
+      end
     end
     @event.save
-    redirect_to events_path, notice: "Votre évènement a été édité"
-
+    if params[:remove_folder].present?
+      redirect_to folder_path(@folder.id), notice: "L'évènement a été retiré du dossier"
+    else
+      redirect_to events_path, notice: "Votre évènement a été édité"
+    end
     # @event = Event.new
     # puts "---------------------"
     # puts params
