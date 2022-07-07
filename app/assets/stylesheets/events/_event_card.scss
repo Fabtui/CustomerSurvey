@@ -53,12 +53,14 @@
 }
 
 .remove__from__folder {
+  display: flex;
+  align-items: center;
   position: relative;
   transform: translateY(2px);
   span {
     color: white;
     position: absolute;
-    top: -10px;
+    top: -3px;
     left: 12px;
     font-size: 24px;
   }
@@ -90,12 +92,8 @@
   }
 }
 
-// @keyframes unfold {
-//   from {
-//     height: 0px;
-//   }
-
-//   to {
-//     height: auto;
-//   }
-// }
+@media screen and (max-width: 740px) {
+.stats-item {
+    padding: 8px;
+  }
+}
