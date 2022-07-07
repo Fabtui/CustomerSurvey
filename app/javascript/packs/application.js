@@ -52,7 +52,7 @@ document.addEventListener('turbolinks:load', () => {
   initSelect2()
   unfoldEventCard()
   dragDrop();
-  // dragDropTouchScreen();
+  dragDropTouchScreen();
   initSweetalert('#home-link-button', {
     title: "Attention!",
     text: "Vous allez perdre vos données non sauvegardées si vous n'êtes pas connecté à internet, êtes vous sûre?",
