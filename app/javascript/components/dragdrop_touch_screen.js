@@ -1,3 +1,5 @@
+import { csrfToken } from "@rails/ujs"
+
 const dragDropTouchScreen = () => {
   const eventsContainer = document.querySelector('.index__cards_container')
   if (eventsContainer) {
@@ -8,19 +10,6 @@ const dragDropTouchScreen = () => {
     }
 
     if ( is_touch_enabled() ) {
-      // console.log('touch');
-      // document.addEventListener('touchstart', () => {
-      //   console.log('strat');
-      // })
-      //       document.addEventListener('touchend', () => {
-      //   console.log('end');
-      // })
-      //       document.addEventListener('touchcancel', () => {
-      //   console.log('touchcancel');
-      // })
-      //       document.addEventListener('touchmove', (e) => {
-      //   console.log(e);
-      // })
 
       const dragItems = document.querySelectorAll('.stat-item-drag-target');
       dragItems.forEach(dragItem => {
@@ -40,14 +29,9 @@ const dragDropTouchScreen = () => {
           statItem.style.top = pageY - statItem.offsetHeight / 2 + 'px';
         }
 
-        moveAt(e.pageX, e.pageY);
+        // moveAt(e.pageX, e.pageY);
 
-        document.addEventListener('touchmove', (e) => {
-          let i;
-          for (i=0; i < e.changedTouches.length; i++) {
-            moveAt(e.changedTouches[i].pageX, e.changedTouches[i].pageY);
-          }
-        });
+        document.addEventListener('touchmove', onMouseMove)
 
         // (3) drop the statItem, remove unneeded handlers
         statItem.ontouchend = function() {
@@ -63,20 +47,20 @@ const dragDropTouchScreen = () => {
 
         let currentDroppable = null;
 
-        function onMouseMove(event) {
-          console.log('mouve');
-        moveAt(event.pageX, event.pageY);
+        function onMouseMove(e) {
+          let i;
+          for (i=0; i < e.changedTouches.length; i++) {
+            moveAt(e.changedTouches[i].pageX, e.changedTouches[i].pageY);
+          }
 
         statItem.hidden = true;
-        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+        let elemBelow = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
         statItem.hidden = false;
 
         if (!elemBelow) return;
 
         let droppableBelow = elemBelow.closest('.droppable');
-        console.log(elemBelow, droppableBelow);
         if (currentDroppable != droppableBelow) {
-
           if (currentDroppable) {
             statItem.ontouchend = function() {
               eventsContainer.append(statItem);
@@ -84,9 +68,16 @@ const dragDropTouchScreen = () => {
               document.removeEventListener('touchmove', onMouseMove);
               statItem.ontouchend = null;
             };
+
+            const leaveDroppable = (currentDroppable) => {
+              currentDroppable.style.transform = 'scale(1)'
+            }
+            // the logic to process "flying out" of the droppable (remove highlight)
             leaveDroppable(currentDroppable);
           }
+
           currentDroppable = droppableBelow;
+
           if (currentDroppable) {
             statItem.addEventListener('touchend', () => {
               fetch(currentDroppable.href.toString(), {
@@ -105,6 +96,11 @@ const dragDropTouchScreen = () => {
                 statItem.style.display = 'none'
               }
             }
+
+            const enterDroppable = (currentDroppable) => {
+              currentDroppable.style.transform = 'scale(1.1)'
+            }
+              // the logic to process "flying in" of the droppable
             enterDroppable(currentDroppable);
           }
         }
