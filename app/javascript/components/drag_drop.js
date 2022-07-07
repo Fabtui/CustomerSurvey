@@ -3,110 +3,123 @@ import { csrfToken } from "@rails/ujs"
 const dragDrop = () => {
   const eventsContainer = document.querySelector('.index__cards_container')
   if (eventsContainer) {
-    const dragItems = document.querySelectorAll('.stat-item-drag-target');
-    dragItems.forEach(dragItem => {
-      dragItem.addEventListener('mousedown', (e) => {
-        const id = dragItem.dataset.id
-        const statItem = document.querySelector(`#stats-item-${id}`)
-        // (1) prepare to moving: make absolute and on top by z-index
-        statItem.style.position = 'absolute';
-        statItem.style.zIndex = 1000;
+    function is_touch_enabled() {
+    return ( 'ontouchstart' in window ) ||
+            ( navigator.maxTouchPoints > 0 ) ||
+            ( navigator.msMaxTouchPoints > 0 );
+    }
 
-        let shiftX = e.clientX - statItem.getBoundingClientRect().left;
-        let shiftY = e.clientY - statItem.getBoundingClientRect().top;
+    if ( !is_touch_enabled() ) {
+      const dragItems = document.querySelectorAll('.stat-item-drag-target');
+      dragItems.forEach(dragItem => {
+        dragItem.addEventListener('mousedown', (e) => {
+          const id = dragItem.dataset.id
+          const statItem = document.querySelector(`#stats-item-${id}`)
+          // (1) prepare to moving: make absolute and on top by z-index
+          statItem.style.position = 'absolute';
+          statItem.style.zIndex = 1000;
 
-        // move it out of any current parents directly into body
-        // to make it positioned relative to the body
-        document.body.append(statItem);
+          let shiftX = e.clientX - statItem.getBoundingClientRect().left;
+          let shiftY = e.clientY - statItem.getBoundingClientRect().top;
 
-        // centers the statItem at (pageX, pageY) coordinates
-        function moveAt(pageX, pageY) {
-          statItem.style.left = pageX - statItem.offsetWidth / 2 + 'px';
-          statItem.style.top = pageY - statItem.offsetHeight / 2 + 'px';
-        }
+          // move it out of any current parents directly into body
+          // to make it positioned relative to the body
+          document.body.append(statItem);
 
-        // move our absolutely positioned statItem under the pointer
-        moveAt(e.pageX, e.pageY);
+          // centers the statItem at (pageX, pageY) coordinates
+          function moveAt(pageX, pageY) {
+            statItem.style.left = pageX - statItem.offsetWidth / 2 + 'px';
+            statItem.style.top = pageY - statItem.offsetHeight / 2 + 'px';
+          }
 
-        function onMouseMove(event) {
+          // move our absolutely positioned statItem under the pointer
+          moveAt(e.pageX, e.pageY);
+
+          // (2) move the statItem on mousemove
+          document.addEventListener('mousemove', onMouseMove);
+
+          // (3) drop the statItem, remove unneeded handlers
+          statItem.onmouseup = function() {
+            eventsContainer.append(statItem);
+            statItem.style.position = '';
+            document.removeEventListener('mousemove', onMouseMove);
+            statItem.onmouseup = null;
+          };
+
+          // statItem.ondragstart = function() {
+          //   return false;
+          // };
+
+          let currentDroppable = null;
+
+          function onMouseMove(event) {
           moveAt(event.pageX, event.pageY);
-        }
 
-        // (2) move the statItem on mousemove
-        document.addEventListener('mousemove', onMouseMove);
+          statItem.hidden = true;
+          let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+          statItem.hidden = false;
 
-        // (3) drop the statItem, remove unneeded handlers
-        statItem.onmouseup = function() {
-          eventsContainer.append(statItem);
-          statItem.style.position = '';
-          document.removeEventListener('mousemove', onMouseMove);
-          statItem.onmouseup = null;
-        };
+          // mousemove events may trigger out of the window (when the statItem is dragged off-screen)
+          // if clientX/clientY are out of the window, then elementFromPoint returns null
+          if (!elemBelow) return;
 
-        // statItem.ondragstart = function() {
-        //   return false;
-        // };
+          // potential droppables are labeled with the class "droppable" (can be other logic)
+          let droppableBelow = elemBelow.closest('.droppable');
 
-        let currentDroppable = null;
+          if (currentDroppable != droppableBelow) {
+            // we're flying in or out...
+            // note: both values can be null
+            //   currentDroppable=null if we were not over a droppable before this event (e.g over an empty space)
+            //   droppableBelow=null if we're not over a droppable now, during this event
 
-        function onMouseMove(event) {
-        moveAt(event.pageX, event.pageY);
+            if (currentDroppable) {
+              statItem.onmouseup = function() {
+                eventsContainer.append(statItem);
+                statItem.style.position = '';
+                document.removeEventListener('mousemove', onMouseMove);
+                statItem.onmouseup = null;
+              };
 
-        statItem.hidden = true;
-        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
-        statItem.hidden = false;
-
-        // mousemove events may trigger out of the window (when the statItem is dragged off-screen)
-        // if clientX/clientY are out of the window, then elementFromPoint returns null
-        if (!elemBelow) return;
-
-        // potential droppables are labeled with the class "droppable" (can be other logic)
-        let droppableBelow = elemBelow.closest('.droppable');
-
-        if (currentDroppable != droppableBelow) {
-          // we're flying in or out...
-          // note: both values can be null
-          //   currentDroppable=null if we were not over a droppable before this event (e.g over an empty space)
-          //   droppableBelow=null if we're not over a droppable now, during this event
-
-          if (currentDroppable) {
-            statItem.onmouseup = function() {
-              eventsContainer.append(statItem);
-              statItem.style.position = '';
-              document.removeEventListener('mousemove', onMouseMove);
-              statItem.onmouseup = null;
-            };
-            // the logic to process "flying out" of the droppable (remove highlight)
-            // leaveDroppable(currentDroppable);
-          }
-          currentDroppable = droppableBelow;
-          if (currentDroppable) {
-            statItem.addEventListener('mouseup', () => {
-              fetch(currentDroppable.href.toString(), {
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                  "X-CSRF-Token": csrfToken()
-                },
-                method: 'PATCH',
-                body: JSON.stringify( { id: statItem.dataset.id } )
-              }).then(response => hideTarget(response))
-            })
-
-            const hideTarget = (response) => {
-              if (response.ok) {
-                statItem.style.display = 'none'
+              const leaveDroppable = (currentDroppable) => {
+                currentDroppable.style.transform = 'scale(1)'
               }
+              // the logic to process "flying out" of the droppable (remove highlight)
+              leaveDroppable(currentDroppable);
             }
-            // the logic to process "flying in" of the droppable
-            // enterDroppable(currentDroppable);
+
+            currentDroppable = droppableBelow;
+            if (currentDroppable) {
+              statItem.addEventListener('mouseup', () => {
+                fetch(currentDroppable.href.toString(), {
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    "X-CSRF-Token": csrfToken()
+                  },
+                  method: 'PATCH',
+                  body: JSON.stringify( { id: statItem.dataset.id } )
+                }).then(response => hideTarget(response))
+              })
+
+              const hideTarget = (response) => {
+                if (response.ok) {
+                  statItem.style.display = 'none'
+                  // location.reload(true)
+                }
+              }
+
+              const enterDroppable = (currentDroppable) => {
+                currentDroppable.style.transform = 'scale(1.1)'
+              }
+              // the logic to process "flying in" of the droppable
+              enterDroppable(currentDroppable);
+            }
           }
         }
-      }
 
-      })
-    });
-
+        })
+      });
+    }
   };
 }
 
