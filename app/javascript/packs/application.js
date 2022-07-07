@@ -26,6 +26,7 @@ import { chartHomeJs } from '../components/chart_home'
 import { initSelect2 } from '../components/init_select2';
 import { unfoldEventCard } from '../components/unfold_event_card'
 import { dragDrop } from '../components/drag_drop'
+import { dragDropTouchScreen } from '../components/dragdrop_touch_screen'
 
 Rails.start()
 Turbolinks.start()
@@ -51,6 +52,7 @@ document.addEventListener('turbolinks:load', () => {
   initSelect2()
   unfoldEventCard()
   dragDrop();
+  // dragDropTouchScreen();
   initSweetalert('#home-link-button', {
     title: "Attention!",
     text: "Vous allez perdre vos données non sauvegardées si vous n'êtes pas connecté à internet, êtes vous sûre?",
