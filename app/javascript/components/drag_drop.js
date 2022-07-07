@@ -18,6 +18,7 @@ const dragDrop = () => {
           // (1) prepare to moving: make absolute and on top by z-index
           statItem.style.position = 'absolute';
           statItem.style.zIndex = 1000;
+          statItem.style.width = '30vw';
 
           let shiftX = e.clientX - statItem.getBoundingClientRect().left;
           let shiftY = e.clientY - statItem.getBoundingClientRect().top;
@@ -42,6 +43,7 @@ const dragDrop = () => {
           statItem.onmouseup = function() {
             eventsContainer.append(statItem);
             statItem.style.position = '';
+            statItem.style.width = '';
             document.removeEventListener('mousemove', onMouseMove);
             statItem.onmouseup = null;
           };
@@ -82,6 +84,7 @@ const dragDrop = () => {
 
               const leaveDroppable = (currentDroppable) => {
                 currentDroppable.style.transform = 'scale(1)'
+                statItem.style.width = '';
               }
               // the logic to process "flying out" of the droppable (remove highlight)
               leaveDroppable(currentDroppable);
