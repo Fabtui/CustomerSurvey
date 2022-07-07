@@ -17,9 +17,33 @@ class EventsController < ApplicationController
     if @event.good.present?
       satisfaction = ((((@event.middle.to_f / 2) + (@event.good))*100).to_f / @event.total).round(2)
     end
+    good_pc = ((@event.good * 100) / @event.total) * 2
+    middle_pc = ((@event.middle * 100) / @event.total) * 2
+    bad_pc = ((@event.bad * 100) / @event.total) * 2
+    total = 200
+
     respond_to do |format|
       format.pdf do
         pdf = Prawn::Document.new
+        # pdf.fill_color('0000ff')
+        x = 100
+        y = 50
+        pdf.blend_mode(:Multiply) do
+          pdf.fill_color('ff6b6b')
+          pdf.fill_rectangle([x, bad_pc+y], 50, bad_pc)
+        end
+        pdf.blend_mode(:Multiply) do
+          pdf.fill_color('f9f61d')
+          pdf.fill_rectangle([x+100, middle_pc+y], 50, middle_pc)
+        end
+        pdf.blend_mode(:Multiply) do
+          pdf.fill_color('0ecb43')
+          pdf.fill_rectangle([x+200, good_pc+y], 50, good_pc)
+        end
+        pdf.blend_mode(:Multiply) do
+          pdf.fill_rectangle([x+300, total+y], 50, total)
+        end
+
         pdf.image "#{Rails.root}/app/assets/images/Customer.png", :at => [0,730], :width => 80, :height => 80
         pdf.text "Customer Satisfaction", size: 32, align: :center
         pdf.text "Survey", size: 32, align: :center
