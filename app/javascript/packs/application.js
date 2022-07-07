@@ -25,7 +25,7 @@ import { chartJs } from '../components/chart'
 import { chartHomeJs } from '../components/chart_home'
 import { initSelect2 } from '../components/init_select2';
 import { unfoldEventCard } from '../components/unfold_event_card'
-import { dragDrop } from '../components/drag_drop'
+import { dragDrop } from '../components/dragdrop'
 import { dragDropTouchScreen } from '../components/dragdrop_touch_screen'
 import { editFormSelectFolder } from '../components/edit_form_select_folder'
 
