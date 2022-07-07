@@ -1,7 +1,7 @@
-<div class="stats-item" data-id="<%= event.id %>" >
+<div class="stats-item" id="stats-item-<%= event.id %>" data-id="<%= event.id %>">
   <div class="stat-header">
     <div class="stat-header-left">
-      <h5><strong><%= event.date.strftime('%d/%m/%Y') %> - <%= event.name.capitalize %></strong></h5>
+      <h5 class="stat-item-drag-target" data-id="<%= event.id %>"><strong><%= event.date.strftime('%d/%m/%Y') %> - <%= event.name.capitalize %></strong></h5>
       <%= link_to event_select_path(event.id), method: :post, class:"#{event.selected ? "selected" : "unselected"}" do %>
         <%= fa_icon "check" %>
       <% end %>

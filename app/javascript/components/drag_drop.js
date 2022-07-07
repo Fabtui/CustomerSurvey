@@ -3,15 +3,18 @@ import { csrfToken } from "@rails/ujs"
 const dragDrop = () => {
   const eventsContainer = document.querySelector('.index__cards_container')
   if (eventsContainer) {
-    const statItems = document.querySelectorAll('.stats-item');
-    statItems.forEach(statItem => {
-      statItem.addEventListener('mousedown', (e) => {
+    const dragItems = document.querySelectorAll('.stat-item-drag-target');
+    dragItems.forEach(dragItem => {
+      dragItem.addEventListener('mousedown', (e) => {
+        const id = dragItem.dataset.id
+        const statItem = document.querySelector(`#stats-item-${id}`)
         // (1) prepare to moving: make absolute and on top by z-index
         statItem.style.position = 'absolute';
         statItem.style.zIndex = 1000;
 
         let shiftX = e.clientX - statItem.getBoundingClientRect().left;
         let shiftY = e.clientY - statItem.getBoundingClientRect().top;
+
         // move it out of any current parents directly into body
         // to make it positioned relative to the body
         document.body.append(statItem);
@@ -40,13 +43,11 @@ const dragDrop = () => {
           statItem.onmouseup = null;
         };
 
-        statItem.ondragstart = function() {
-          return false;
-        };
+        // statItem.ondragstart = function() {
+        //   return false;
+        // };
 
         let currentDroppable = null;
-
-
 
         function onMouseMove(event) {
         moveAt(event.pageX, event.pageY);
@@ -94,8 +95,7 @@ const dragDrop = () => {
 
             const hideTarget = (response) => {
               if (response.ok) {
-                statItem.style.transition = "all 0.2s"
-                statItem.style.opacity = '0';
+                statItem.style.display = 'none'
               }
             }
             // the logic to process "flying in" of the droppable
