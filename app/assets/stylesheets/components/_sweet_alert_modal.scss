@@ -17,8 +17,8 @@
   }
 }
 
-.swal-button--confirm {
-  background-color: $primary;
+.swal-button--confirm, .swal-button--all, .swal-button--folder {
+  background-color: $primary !important;
   transition: 0.2s;
   &:hover {
     transition: 0.2s;
