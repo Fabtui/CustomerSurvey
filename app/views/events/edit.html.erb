@@ -25,9 +25,8 @@
                   required: false,
                   autofocus: true,
                   input_html: { autocomplete: "tag_line" } %>
-      <%= f.input :folder, :collection => @folders, value:@event.folder.id , :value_method => :id, :label => "Dossier" ,:include_blank => true %>
+      <%= f.input :folder, :collection => @folders, :value_method => :id, :label => "Dossier" ,:include_blank => true %>
     </div>
-
     <div class="form-actions">
       <%= f.button :submit, "Enregistrer", class:'btn btn-primary', id:"save-new-event" %>
       <%= f.button :submit, "Annuler", class:'btn btn-danger', id:"cancel-new-event" %>

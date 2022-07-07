@@ -15,4 +15,7 @@
 
 .folder-delete-button {
   margin: 0 8px;
+  &:hover {
+    cursor: pointer;
+  }
 }
