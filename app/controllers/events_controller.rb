@@ -93,7 +93,6 @@ class EventsController < ApplicationController
   end
 
   def update
-    raise
     @event = Event.find(params[:id])
     if params[:remove_folder].present?
       @folder = @event.folder

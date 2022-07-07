@@ -27,6 +27,7 @@ import { initSelect2 } from '../components/init_select2';
 import { unfoldEventCard } from '../components/unfold_event_card'
 import { dragDrop } from '../components/drag_drop'
 import { dragDropTouchScreen } from '../components/dragdrop_touch_screen'
+import { editFormSelectFolder } from '../components/edit_form_select_folder'
 
 Rails.start()
 Turbolinks.start()
@@ -53,6 +54,7 @@ document.addEventListener('turbolinks:load', () => {
   unfoldEventCard()
   dragDrop();
   dragDropTouchScreen();
+  editFormSelectFolder();
   initSweetalert('#home-link-button', {
     title: "Attention!",
     text: "Vous allez perdre vos données non sauvegardées si vous n'êtes pas connecté à internet, êtes vous sûre?",

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container edit-container" data-folder= <%= @event.folder ? @event.folder.id : nil %> >
   <%= simple_form_for(@event, as: :event, method: :patch, url: event_path) do |f| %>
     <div id="new-event-form" class="form-inputs">
       <%= f.input :name,
