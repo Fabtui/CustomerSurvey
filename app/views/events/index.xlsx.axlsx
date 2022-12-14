@@ -28,4 +28,5 @@ wb.styles do |style|
       sheet.add_border ["A#{count}:A#{count}","B#{count}:B#{count}","C#{count}:C#{count}","D#{count}:D#{count}","E#{count}:E#{count}","F#{count}:F#{count}","G#{count}:G#{count}","H#{count}:H#{count}","I#{count}:I#{count}","J#{count}:J#{count}","K#{count}:K#{count}","L#{count}:L#{count}"]
     end
   end
+
 end
